@@ -1,12 +1,12 @@
 <?php 
 
-class Mahasiswa_model extends CI_model {
-    public function getAllMahasiswa()
+class Pelanggan_model extends CI_model {
+    public function getAllPelanggan()
     {
-        return $this->db->get('mahasiswa')->result_array();
+        return $this->db->get('pelanggan')->result_array();
     }
 
-    public function tambahDataMahasiswa()
+    public function tambahDataPelanggan()
     {
         $data = [
             "nama" => $this->input->post('nama', true),
@@ -15,21 +15,21 @@ class Mahasiswa_model extends CI_model {
             "jurusan" => $this->input->post('jurusan', true)
         ];
 
-        $this->db->insert('mahasiswa', $data);
+        $this->db->insert('Pelanggan', $data);
     }
 
-    public function hapusDataMahasiswa($id)
+    public function hapusDataPelanggan($no_pel)
     {
         // $this->db->where('id', $id);
-        $this->db->delete('mahasiswa', ['id' => $id]);
+        $this->db->delete('Pelanggan', ['id' => $id]);
     }
 
-    public function getMahasiswaById($id)
+    public function getPelangganById($no_pel)
     {
-        return $this->db->get_where('mahasiswa', ['id' => $id])->row_array();
+        return $this->db->get_where('pelanggan', ['no_pelanggan' => $no_pel])->row_array();
     }
 
-    public function ubahDataMahasiswa()
+    public function ubahDataPelanggan()
     {
         $data = [
             "nama" => $this->input->post('nama', true),
@@ -38,17 +38,17 @@ class Mahasiswa_model extends CI_model {
             "jurusan" => $this->input->post('jurusan', true)
         ];
 
-        $this->db->where('id', $this->input->post('id'));
-        $this->db->update('mahasiswa', $data);
+        $this->db->where('no_pelanggan', $this->input->post('no_pelanggan'));
+        $this->db->update('pelanggan', $data);
     }
 
-    public function cariDataMahasiswa()
+    public function cariDataPelanggan()
     {
         $keyword = $this->input->post('keyword', true);
         $this->db->like('nama', $keyword);
         $this->db->or_like('jurusan', $keyword);
         $this->db->or_like('nrp', $keyword);
         $this->db->or_like('email', $keyword);
-        return $this->db->get('mahasiswa')->result_array();
+        return $this->db->get('pelanggan')->result_array();
     }
 }

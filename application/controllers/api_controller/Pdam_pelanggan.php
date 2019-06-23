@@ -10,7 +10,7 @@ class Pdam_pelanggan extends REST_Controller{
 
     public function __construct(){
         parent::__construct();
-        $this->load->model('Pelanggan_model');
+        $this->load->model('Pelanggan_model_api');
     }
     
     public function index_get(){
@@ -18,9 +18,9 @@ class Pdam_pelanggan extends REST_Controller{
         $no_pelanggan = $this->get('no_pelanggan');
 
         if ($no_pelanggan === null) {
-            $pelanggan = $this->Pelanggan_model->getPelanggan();
+            $pelanggan = $this->Pelanggan_model_api->getPelanggan();
         } else {
-            $pelanggan = $this->Pelanggan_model->getPelanggan($no_pelanggan);
+            $pelanggan = $this->Pelanggan_model_api->getPelanggan($no_pelanggan);
         }
         
         if($pelanggan){
@@ -45,7 +45,7 @@ class Pdam_pelanggan extends REST_Controller{
                 'message' => 'No Pelanggan tidak ditemukan !'
             ], REST_Controller::HTTP_BAD_REQUEST);
         } else {
-            if ($this->Pelanggan_model->deletePelanggan($no_pelanggan) > 0) {
+            if ($this->Pelanggan_model_api->deletePelanggan($no_pelanggan) > 0) {
                 $this->response([
                     'status' => true,
                     'no_pelanggan' => $no_pelanggan,
@@ -74,7 +74,7 @@ class Pdam_pelanggan extends REST_Controller{
             'password' => $this->post('password')
         ];
 
-        if ($this->Pelanggan_model->createPelanggan($data_pell) > 0) {
+        if ($this->Pelanggan_model_api->createPelanggan($data_pell) > 0) {
             $this->response([
                 'status' => true,
                 'message' => 'Data pelanggan Berhasil ditambahkan'
@@ -102,7 +102,7 @@ class Pdam_pelanggan extends REST_Controller{
             'password' => $this->put('password')
         ];
 
-        if ($this->Pelanggan_model->updatePelanggan($data_pell, $no_daftar) > 0) {
+        if ($this->Pelanggan_model_api->updatePelanggan($data_pell, $no_daftar) > 0) {
             $this->response([
                 'status' => true,
                 'message' => 'Data pelanggan Berhasil diubah'
