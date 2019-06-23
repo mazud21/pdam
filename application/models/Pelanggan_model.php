@@ -9,24 +9,28 @@ class Pelanggan_model extends CI_model {
     public function tambahDataPelanggan()
     {
         $data = [
+            "no_pelanggan" => $this->input->post('no_pelanggan', true),
+            "password" => $this->input->post('password', true),
             "nama" => $this->input->post('nama', true),
-            "nrp" => $this->input->post('nrp', true),
+            "alamat" => $this->input->post('alamat', true),
             "email" => $this->input->post('email', true),
-            "jurusan" => $this->input->post('jurusan', true)
+            "no_hp" => $this->input->post('no_hp', true),
+            "foto_ktp" => $this->input->post('foto_ktp', true),
+            "pilih_tarif" => $this->input->post('pilih_tarif', true)
         ];
 
-        $this->db->insert('Pelanggan', $data);
+        $this->db->insert('pelanggan', $data);
     }
 
-    public function hapusDataPelanggan($no_pel)
+    public function hapusDataPelanggan($no_pelanggan)
     {
         // $this->db->where('id', $id);
-        $this->db->delete('Pelanggan', ['id' => $id]);
+        $this->db->delete('pelanggan', ['no_pelanggan' => $no_pelanggan]);
     }
 
-    public function getPelangganById($no_pel)
+    public function getPelangganById($no_pelanggan)
     {
-        return $this->db->get_where('pelanggan', ['no_pelanggan' => $no_pel])->row_array();
+        return $this->db->get_where('pelanggan', ['no_pelanggan' => $no_pelanggan])->row_array();
     }
 
     public function ubahDataPelanggan()
@@ -38,7 +42,7 @@ class Pelanggan_model extends CI_model {
             "jurusan" => $this->input->post('jurusan', true)
         ];
 
-        $this->db->where('no_pelanggan', $this->input->post('no_pelanggan'));
+        $this->db->where('id', $this->input->post('id'));
         $this->db->update('pelanggan', $data);
     }
 

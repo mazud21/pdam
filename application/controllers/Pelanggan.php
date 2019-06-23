@@ -26,8 +26,10 @@ class Pelanggan extends CI_Controller
         $data['judul'] = 'Form Tambah Data Pelanggan';
 
         $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('nrp', 'NRP', 'required|numeric');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|numeric|min_length[11]|max_length[12]');
+        $this->form_validation->set_rules('foto_ktp', 'Foto KTP', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -40,26 +42,26 @@ class Pelanggan extends CI_Controller
         }
     }
 
-    public function hapus($id)
+    public function hapus($no_pelanggan)
     {
-        $this->Pelanggan_model->hapusDataPelanggan($id);
+        $this->Pelanggan_model->hapusDataPelanggan($no_pelanggan);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('pelanggan');
     }
 
-    public function detail($id)
+    public function detail($no_pelanggan)
     {
         $data['judul'] = 'Detail Data Pelanggan';
-        $data['pelanggan'] = $this->Pelanggan_model->getPelangganById($id);
+        $data['pelanggan'] = $this->Pelanggan_model->getPelangganById($no_pelanggan);
         $this->load->view('templates/header', $data);
         $this->load->view('pelanggan/detail', $data);
         $this->load->view('templates/footer');
     }
 
-    public function ubah($id)
+    public function ubah($no_pelanggan)
     {
         $data['judul'] = 'Form Ubah Data Pelanggan';
-        $data['pelanggan'] = $this->Pelanggan_model->getPelangganById($id);
+        $data['pelanggan'] = $this->Pelanggan_model->getPelangganById($no_pelanggan);
         $data['jurusan'] = ['Teknik Informatika', 'Teknik Mesin', 'Teknik Planologi', 'Teknik Pangan', 'Teknik Lingkungan'];
 
         $this->form_validation->set_rules('nama', 'Nama', 'required');
