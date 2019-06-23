@@ -10,8 +10,8 @@
                 <div class="card-body">
                     <form action="" method="post">
                         <div class="form-group">
-                            <label for="no_pel">Nomor Pelanggan</label>
-                            <input type="text" name="no_pel" class="form-control" id="no_pelanggan">
+                            <label for="no_pelanggan">Nomor Pelanggan</label>
+                            <input type="text" name="no_pelanggan" class="form-control" id="no_pelanggan">
                             <small class="form-text text-danger"><?= form_error('no_pelanggan'); ?></small>
                         </div>
 
@@ -19,6 +19,12 @@
                             <label for="password">Password</label>
                             <input type="text" name="password" class="form-control" id="password">
                             <small class="form-text text-danger"><?= form_error('password'); ?></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="no_ktp">Nomor KTP</label>
+                            <input type="text" name="no_ktp" class="form-control" id="no_ktp">
+                            <small class="form-text text-danger"><?= form_error('no_ktp'); ?></small>
                         </div>
 
                         <div class="form-group">
