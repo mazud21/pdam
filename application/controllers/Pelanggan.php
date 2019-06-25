@@ -25,6 +25,9 @@ class Pelanggan extends CI_Controller
     {
         $data['judul'] = 'Form Tambah Data Pelanggan';
 
+        $this->form_validation->set_rules('no_pelanggan', 'Nomor Pelanggan', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('no_ktp', 'Nomor KTP', 'required');
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
@@ -62,11 +65,16 @@ class Pelanggan extends CI_Controller
     {
         $data['judul'] = 'Form Ubah Data Pelanggan';
         $data['pelanggan'] = $this->Pelanggan_model->getPelangganById($no_pelanggan);
-        $data['jurusan'] = ['Teknik Informatika', 'Teknik Mesin', 'Teknik Planologi', 'Teknik Pangan', 'Teknik Lingkungan'];
+        $data['pilih_tarif'] = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3'];
 
+        $this->form_validation->set_rules('no_pelanggan', 'Nomor Pelanggan', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_rules('no_ktp', 'Nomor KTP', 'required|numeric|min_length[16]|max_length[16]');
         $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('nrp', 'NRP', 'required|numeric');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|numeric|min_length[11]|max_length[12]');
+        $this->form_validation->set_rules('foto_ktp', 'Foto KTP', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);

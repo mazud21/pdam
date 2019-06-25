@@ -8,7 +8,9 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title"><?= $pelanggan['no_pelanggan']; ?></h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><?= $pelanggan['nama']; ?></h6>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                    <?= $pelanggan['nama']; ?></h6>
+                    <p class="card-text"><?= $pelanggan['no_ktp']; ?></p>
                     <p class="card-text"><?= $pelanggan['alamat']; ?></p>
                     <p class="card-text"><?= $pelanggan['email']; ?></p>
                     <p class="card-text"><?= $pelanggan['no_hp']; ?></p>

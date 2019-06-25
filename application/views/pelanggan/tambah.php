@@ -60,12 +60,12 @@
                         <div class="form-group">
                             <label for="pilih_tarif">Pilih Tarif</label>
                             <select class="form-control" id="pilih_tarif" name="pilih_tarif">
-                                <option value="Teknik Informatika">Teknik Informatika</option>
-                                <option value="Teknik Industri">Teknik Industri</option>
-                                <option value="Teknik Pangan">Teknik Pangan</option>
-                                <option value="Teknik Mesin">Teknik Mesin</option>
-                                <option value="Teknik Planologi">Teknik Planologi</option>
-                                <option value="Teknik Lingkungan">Teknik Lingkungan</option>
+                                <option value="A1">A1</option>
+                                <option value="A2">A2</option>
+                                <option value="A3">A3</option>
+                                <option value="B1">B1</option>
+                                <option value="B2">B2</option>
+                                <option value="B3">B3</option>
                             </select>
                         </div>
 
