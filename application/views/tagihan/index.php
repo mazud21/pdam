@@ -42,14 +42,14 @@
                 </div>
             <?php endif; ?>
             <ul class="list-group">
-                <?php foreach ($tagihan as $pell) : ?>
+                <?php foreach ($tagihan as $tag) : ?>
                 <li class="list-group-item">
-                    <?= $pell['nama']; ?>
-                    <a href="<?= base_url(); ?>tagihan/hapus/<?= $pell['no_tagihan']; ?>"
+                    <?= $tag['no_tag']; ?>
+                    <a href="<?= base_url(); ?>tagihan/hapus/<?= $tag['no_tagihan']; ?>"
                         class="badge badge-danger float-right tombol-hapus">hapus</a>
-                    <a href="<?= base_url(); ?>tagihan/ubah/<?= $pell['no_tagihan']; ?>"
+                    <a href="<?= base_url(); ?>tagihan/ubah/<?= $tag['no_tagihan']; ?>"
                         class="badge badge-success float-right">ubah</a>
-                    <a href="<?= base_url(); ?>tagihan/detail/<?= $pell['no_tagihan']; ?>"
+                    <a href="<?= base_url(); ?>tagihan/detail/<?= $tag['no_tagihan']; ?>"
                         class="badge badge-primary float-right">detail</a>
                 </li>
                 <?php endforeach; ?>

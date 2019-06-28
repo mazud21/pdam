@@ -13,12 +13,12 @@
     </div> -->
     <?php endif; ?>
 
-    <div class="row mt-3">
+    <!--div class="row mt-3">
         <div class="col-md-6">
             <a href="<?= base_url(); ?>pengaduan/tambah" class="btn btn-primary">Tambah
                 Data Pengaduan</a>
         </div>
-    </div>
+    </div-->
 
     <div class="row mt-3">
         <div class="col-md-6">
@@ -45,8 +45,8 @@
                 <?php foreach ($pengaduan as $peng) : ?>
                 <li class="list-group-item">
                     <?= $peng['nama']; ?>
-                    <a href="<?= base_url(); ?>pengaduan/hapus/<?= $peng['pengaduan']; ?>"
-                        class="badge badge-danger float-right tombol-hapus">hapus</a>
+                    <!--a href="<?= base_url(); ?>pengaduan/hapus/<?= $peng['pengaduan']; ?>"
+                        class="badge badge-danger float-right tombol-hapus">hapus</a-->
                     <a href="<?= base_url(); ?>pengaduan/ubah/<?= $peng['pengaduan']; ?>"
                         class="badge badge-success float-right">ubah</a>
                     <a href="<?= base_url(); ?>pengaduan/detail/<?= $peng['pengaduan']; ?>"

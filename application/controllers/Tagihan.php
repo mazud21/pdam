@@ -6,6 +6,7 @@ class Tagihan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Tagihan_model');
+        $this->load->model('Pelanggan_model');
         $this->load->library('form_validation');
     }
 
@@ -23,6 +24,9 @@ class Tagihan extends CI_Controller
 
     public function tambah()
     {
+        //load data nopel use dropdown
+        $data['pelanggan']=$this->Tagihan_model->getNoPell();
+        
         $data['judul'] = 'Form Tambah Data Tagihan';
 
         $this->form_validation->set_rules('tagihan', 'Nomor Tagihan', 'required');

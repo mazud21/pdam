@@ -9,18 +9,26 @@ class Tagihan_model extends CI_model {
     public function tambahDataTagihan()
     {
         $data = [
-            "tagihan_air" => $this->input->post('tagihan_air', true),
-            "password" => $this->input->post('password', true),
-            "no_ktp" => $this->input->post('no_ktp', true),
-            "nama" => $this->input->post('nama', true),
-            "alamat" => $this->input->post('alamat', true),
-            "email" => $this->input->post('email', true),
-            "no_hp" => $this->input->post('no_hp', true),
-            "foto_ktp" => $this->input->post('foto_ktp', true),
-            "pilih_tarif" => $this->input->post('pilih_tarif', true)
+            "no_tagihan" => $this->input->post('no_tagihan', true),
+            "denda" => $this->input->post('denda', true),
+            "bulan_bayar" => $this->input->post('bulan_bayar', true),
+            "biaya_air" => $this->input->post('biaya_air', true),
+            "biaya_segel" => $this->input->post('biaya_segel', true),
+            "std_awal" => $this->input->post('std_awal', true),
+            "std_akhir" => $this->input->post('std_akhir', true),
+            "tgl_bayar" => $this->input->post('tgl_bayar', true),
+            "status_bayar" => $this->input->post('status_bayar', true),
+            "angs_air" => $this->input->post('angs_air', true),
+            "angs_non_air" => $this->input->post('angs_non_air', true),
+            "total_tagihan" => $this->input->post('total_tagihan', true)
         ];
 
         $this->db->insert('tagihan_air', $data);
+    }
+
+    public function getNoPell(){
+        $query = $this->db->query('SELECT * from pelanggan');
+        return $query->result();
     }
 
     public function hapusDataTagihan($tagihan_air)
@@ -37,18 +45,21 @@ class Tagihan_model extends CI_model {
     public function ubahDataTagihan()
     {
         $data = [
-            "tagihan_air" => $this->input->post('tagihan_air', true),
-            "password" => $this->input->post('password', true),
-            "no_ktp" => $this->input->post('no_ktp', true),
-            "nama" => $this->input->post('nama', true),
-            "alamat" => $this->input->post('alamat', true),
-            "email" => $this->input->post('email', true),
-            "no_hp" => $this->input->post('no_hp', true),
-            "foto_ktp" => $this->input->post('foto_ktp', true),
-            "pilih_tarif" => $this->input->post('pilih_tarif', true)
+            "no_tagihan" => $this->input->post('no_tagihan', true),
+            "denda" => $this->input->post('denda', true),
+            "bulan_bayar" => $this->input->post('bulan_bayar', true),
+            "biaya_air" => $this->input->post('biaya_air', true),
+            "biaya_segel" => $this->input->post('biaya_segel', true),
+            "std_awal" => $this->input->post('std_awal', true),
+            "std_akhir" => $this->input->post('std_akhir', true),
+            "tgl_bayar" => $this->input->post('tgl_bayar', true),
+            "status_bayar" => $this->input->post('status_bayar', true),
+            "angs_air" => $this->input->post('angs_air', true),
+            "angs_non_air" => $this->input->post('angs_non_air', true),
+            "total_tagihan" => $this->input->post('total_tagihan', true)
         ];
 
-        $this->db->where('tagihan_air', $this->input->post('tagihan_air'));
+        $this->db->where('no_tagihan', $this->input->post('no_tagihan'));
         $this->db->update('tagihan_air', $data);
     }
 
