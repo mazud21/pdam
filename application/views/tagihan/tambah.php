@@ -9,6 +9,7 @@
                 </div>
                 <div class="card-body">
                     <form action="" method="post">
+                        
                         <div class="form-group">
                             <label for="tagihan">Nomor Pelanggan</label>
                                 <select required name="kode_gejala">
@@ -24,6 +25,12 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="nama">No Daftar</label>
+                            <input type="text" name="no_daftar" class="form-control" id="no_daftar" value="<?= $row->no_daftar ?>" readonly>
+                            <small class="form-text text-danger"><?= form_error('nama'); ?></small>
+                        </div>
+                        
+                        <div class="form-group">
                             <label for="nama">Nama Pelanggan</label>
                             <input type="text" name="nama" class="form-control" id="nama" value="<?= $row->nama ?>" readonly>
                             <small class="form-text text-danger"><?= form_error('nama'); ?></small>
@@ -37,7 +44,7 @@
 
                         <div class="form-group">
                             <label for="no_hp">Nomor HP</label>
-                            <input type="text" name="no_hp" class="form-control" id="no_hp" value="<?= $row->no_hp ?>" readonly>
+                            <input type="text" name="no_hp" class="form-control" id="no_hp" value="<?= $row->email ?>" readonly>
                             <small class="form-text text-danger"><?= form_error('no_hp'); ?></small>
                         </div>
 

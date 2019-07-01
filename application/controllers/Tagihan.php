@@ -13,7 +13,9 @@ class Tagihan extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Daftar Tagihan Air';
+        
         $data['tagihan_air'] = $this->Tagihan_model->getAllTagihan();
+
         if( $this->input->post('keyword') ) {
             $data['tagihan_air'] = $this->Tagihan_model->cariDataTagihan();
         }
@@ -22,11 +24,22 @@ class Tagihan extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function detail($no_tagihan)
+    {
+        $data['judul'] = 'Detail Data Tagihan';
+        
+        $data['tagihan_air'] = $this->Tagihan_model->getTagihanById($no_tagihan);
+        
+        $this->load->view('templates/header', $data);
+        $this->load->view('tagihan/detail', $data);
+        $this->load->view('templates/footer');
+    }
+
     public function tambah()
     {
         //load data nopel use dropdown
         $data['pelanggan']=$this->Tagihan_model->getNoPell();
-        
+
         $data['judul'] = 'Form Tambah Data Tagihan';
 
         $this->form_validation->set_rules('tagihan', 'Nomor Tagihan', 'required');
@@ -40,7 +53,7 @@ class Tagihan extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            $this->load->view('tagihan/tambah');
+            $this->load->view('tagihan/tambah', $data);
             $this->load->view('templates/footer');
         } else {
             $this->Tagihan_model->tambahDataTagihan();
@@ -54,15 +67,6 @@ class Tagihan extends CI_Controller
         $this->Tagihan_model->hapusDataTagihan($tagihan_air);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('tagihan');
-    }
-
-    public function detail($tagihan_air)
-    {
-        $data['judul'] = 'Detail Data Tagihan';
-        $data['tagihan_air'] = $this->Tagihan_model->getTagihanById($tagihan_air);
-        $this->load->view('templates/header', $data);
-        $this->load->view('tagihan/detail', $data);
-        $this->load->view('templates/footer');
     }
 
     public function ubah($tagihan_air)

@@ -3,13 +3,29 @@
 class Tagihan_model extends CI_model {
     public function getAllTagihan()
     {
-        return $this->db->get('tagihan_air')->result_array();
+        //return $this->db->get('tagihan_air')->result_array();
+        $this->db->select('*');
+        $this->db->from('pelanggan');
+        $this->db->join('tagihan_air','tagihan_air.no_daftar=pelanggan.no_daftar');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function getTagihanById($no_tagihan)
+    {
+        $this->db->select('*');
+        $this->db->from('pelanggan');
+        $this->db->join('tagihan_air', 'tagihan_air.no_daftar=pelanggan.no_daftar');
+        $this->db->where('no_tagihan',$no_tagihan);
+        $query = $this->db->get();
+        return $query->row_array();
     }
 
     public function tambahDataTagihan()
     {
         $data = [
             "no_tagihan" => $this->input->post('no_tagihan', true),
+            "no_daftar" => $this->input->post('no_daftar', true),
             "denda" => $this->input->post('denda', true),
             "bulan_bayar" => $this->input->post('bulan_bayar', true),
             "biaya_air" => $this->input->post('biaya_air', true),
@@ -24,6 +40,7 @@ class Tagihan_model extends CI_model {
         ];
 
         $this->db->insert('tagihan_air', $data);
+        
     }
 
     public function getNoPell(){
@@ -31,15 +48,10 @@ class Tagihan_model extends CI_model {
         return $query->result();
     }
 
-    public function hapusDataTagihan($tagihan_air)
+    public function hapusDataTagihan($no_tagihan)
     {
         // $this->db->where('id', $id);
-        $this->db->delete('tagihan_air', ['tagihan_air' => $tagihan_air]);
-    }
-
-    public function getTagihanById($tagihan_air)
-    {
-        return $this->db->get_where('tagihan_air', ['tagihan_air' => $tagihan_air])->row_array();
+        $this->db->delete('tagihan_air', ['no_tagihan' => $no_tagihan]);
     }
 
     public function ubahDataTagihan()

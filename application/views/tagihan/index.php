@@ -36,15 +36,17 @@
     <div class="row mt-3">
         <div class="col-md-6">
             <h3>Daftar tagihan</h3>
-            <?php if (empty($tagihan)) : ?>
+            <?php if (empty($tagihan_air)) : ?>
                 <div class="alert alert-danger" role="alert">
                 data tagihan tidak ditemukan.
                 </div>
             <?php endif; ?>
             <ul class="list-group">
-                <?php foreach ($tagihan as $tag) : ?>
+                <?php foreach ($tagihan_air as $tag) { ?>
                 <li class="list-group-item">
-                    <?= $tag['no_tag']; ?>
+                    <?= $tag['no_pelanggan']; ?>
+                    <?= $tag['nama']; ?>
+                    
                     <a href="<?= base_url(); ?>tagihan/hapus/<?= $tag['no_tagihan']; ?>"
                         class="badge badge-danger float-right tombol-hapus">hapus</a>
                     <a href="<?= base_url(); ?>tagihan/ubah/<?= $tag['no_tagihan']; ?>"
@@ -52,7 +54,7 @@
                     <a href="<?= base_url(); ?>tagihan/detail/<?= $tag['no_tagihan']; ?>"
                         class="badge badge-primary float-right">detail</a>
                 </li>
-                <?php endforeach; ?>
+                <?php } ?>
             </ul>
         </div>
     </div>
