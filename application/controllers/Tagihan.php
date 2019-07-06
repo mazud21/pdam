@@ -1,4 +1,5 @@
 <?php
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Tagihan extends CI_Controller
 {
@@ -19,6 +20,7 @@ class Tagihan extends CI_Controller
         if( $this->input->post('keyword') ) {
             $data['tagihan_air'] = $this->Tagihan_model->cariDataTagihan();
         }
+        
         $this->load->view('templates/header', $data);
         $this->load->view('tagihan/index', $data);
         $this->load->view('templates/footer');
@@ -35,12 +37,31 @@ class Tagihan extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function search(){
+        $no_pelanggan = $this->input->post('no_pelanggan');
+
+        $pelanggan = $this->Tagihan_model->viewByNP($no_pelanggan);
+
+        if ( ! empty($pelanggan)) {
+            $callback = array(
+                'status' => 'success',
+                'no_daftar' => $pelanggan->no_daftar,
+                'nama' => $pelanggan->nama,
+            );
+        } else {
+            $callback = array('status' => 'failed');
+        }
+        echo json_encode($callback);
+    }
+
     public function tambah()
     {
         //load data nopel use dropdown
-        $data['pelanggan']=$this->Tagihan_model->getNoPell();
+        //$data['pelanggan']=$this->Tagihan_model->getNoPell();
 
         $data['judul'] = 'Form Tambah Data Tagihan';
+
+        //$this->load->view('tagihan/tambah');
 
         $this->form_validation->set_rules('tagihan', 'Nomor Tagihan', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');

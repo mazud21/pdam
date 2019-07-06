@@ -1,16 +1,31 @@
-<div class="container">
+<script>
+    var baseurl = "<?php echo base_url("index.php/"); ?>"; // Buat variabel baseurl untuk nanti di akses pada file config.js
+    </script>
+    <script src="<?php echo base_url("js/jquery.min.js"); ?>"></script> <!-- Load library jquery -->
+    <script src="<?php echo base_url("js/config.js"); ?>"></script> <!-- Load file process.js -->
 
+<div class="container">
     <div class="row mt-3">
         <div class="col-md-6">
-
             <div class="card">
                 <div class="card-header">
                     Form Tambah Data Tagihan
                 </div>
                 <div class="card-body">
-                    <form action="" method="post">
+                    <form action="" method="POST">
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                <label for="no_pelanggan">No Pelanggan</label>
+                                    <input type="text" class="form-control" placeholder="Cari nomor pelanggan" name="no_pelanggan" id="no_pelanggan">
+                                    <button id=btn-search class="btn btn-primary" type="button">Cari</button>
+                                    <span id="loading">LOADING...</span>    
+                                </div>
+                                
+                            </div>
+                        </div>
                         
-                        <div class="form-group">
+                        <!--div class="form-group">
                             <label for="tagihan">Nomor Pelanggan</label>
                                 <select required name="kode_gejala">
                                 <option value="">-- Nomor Pelanggan --</option>
@@ -20,32 +35,21 @@
                                         }
                                         echo"
                                         </select>"
-                                    ?>
-                            <!--small class="form-text text-danger"><?= form_error('tagihan'); ?></small-->
-                        </div>
+                                    ?> 
+                            <small class="form-text text-danger"><?= form_error('tagihan'); ?></small>
+                        </div-->
 
                         <div class="form-group">
-                            <label for="nama">No Daftar</label>
-                            <input type="text" name="no_daftar" class="form-control" id="no_daftar" value="<?= $row->no_daftar ?>" readonly>
-                            <small class="form-text text-danger"><?= form_error('nama'); ?></small>
+                            <label for="no_daftar">No Daftar</label>
+                            <input type="text" name="no_daftar" class="form-control" id="no_daftar" readonly>
+                            <small class="form-text text-danger"><?= form_error('no_daftar'); ?></small>
+                            
                         </div>
                         
                         <div class="form-group">
                             <label for="nama">Nama Pelanggan</label>
-                            <input type="text" name="nama" class="form-control" id="nama" value="<?= $row->nama ?>" readonly>
+                            <input type="text" name="nama" class="form-control" id="nama" readonly>
                             <small class="form-text text-danger"><?= form_error('nama'); ?></small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="alamat">Alamat</label>
-                            <input type="text" name="alamat" class="form-control" id="alamat" value="<?= $row->alamat ?>" readonly>
-                            <small class="form-text text-danger"><?= form_error('alamat'); ?></small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="no_hp">Nomor HP</label>
-                            <input type="text" name="no_hp" class="form-control" id="no_hp" value="<?= $row->email ?>" readonly>
-                            <small class="form-text text-danger"><?= form_error('no_hp'); ?></small>
                         </div>
 
                         <div class="form-group">
@@ -56,7 +60,7 @@
 
                         <div class="form-group">
                             <label for="bulan_bayar">Bulan Bayar</label>
-                            <input type="text" name="bulan_bayar" class="form-control" id="bulan_bayar">
+                            <input type="text" name="bulan_bayar" class="form-control" id="bulan_bayar" value="<?= date("F"); ?>" readonly>
                             <small class="form-text text-danger"><?= form_error('bulan_bayar'); ?></small>
                         </div>
 
@@ -107,20 +111,17 @@
                             <input type="text" name="status_bayar" class="form-control" id="status_bayar">
                             <small class="form-text text-danger"><?= form_error('status_bayar'); ?></small>
                         </div>
-                        
+<!--                        
                         <div class="form-group">
                             <label for="tgl_bayar">Tanggal Bayar</label>
                             <input type="text" name="tgl_bayar" class="form-control" id="tgl_bayar" value="<?php echo date('d-m-Y'); ?>" readonly>
                             <small class="form-text text-danger"><?= form_error('tgl_bayar'); ?></small>
                         </div>
-
+-->
                         <button type="submit" name="tambah" class="btn btn-primary float-right">Tambah Data Tagihan</button>
                     </form>
                 </div>
             </div>
-
-
         </div>
     </div>
-
 </div>

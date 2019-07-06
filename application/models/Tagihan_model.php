@@ -1,4 +1,5 @@
 <?php 
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Tagihan_model extends CI_model {
     public function getAllTagihan()
@@ -21,8 +22,16 @@ class Tagihan_model extends CI_model {
         return $query->row_array();
     }
 
-    public function tambahDataTagihan()
+    public function viewByNP($no_pelanggan){
+        $this->db->where('no_pelanggan', $no_pelanggan);
+        $result = $this->db->get('pelanggan')->row();
+
+        return $result;
+    }
+
+    public function tambahDataTagihan($no_daftar)
     {
+
         $data = [
             "no_tagihan" => $this->input->post('no_tagihan', true),
             "no_daftar" => $this->input->post('no_daftar', true),

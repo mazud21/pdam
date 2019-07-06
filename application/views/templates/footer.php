@@ -5,5 +5,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="<?= base_url(); ?>assets/js/sweetalert2.all.min.js"></script>
     <script src="<?= base_url(); ?>assets/js/myscript.js"></script>
+    <script>
+    var baseurl = "<?php echo base_url("index.php/"); ?>"; // Buat variabel baseurl untuk nanti di akses pada file config.js
+    </script>
+    <script src="<?php echo base_url("js/jquery.min.js"); ?>"></script> <!-- Load library jquery -->
+    <script src="<?php echo base_url("js/config.js"); ?>"></script> <!-- Load file process.js -->
   </body>
 </html>
