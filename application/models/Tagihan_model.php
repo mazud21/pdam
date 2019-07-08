@@ -29,11 +29,10 @@ class Tagihan_model extends CI_model {
         return $result;
     }
 
-    public function tambahDataTagihan($no_daftar)
+    public function tambahDataTagihan()
     {
 
         $data = [
-            "no_tagihan" => $this->input->post('no_tagihan', true),
             "no_daftar" => $this->input->post('no_daftar', true),
             "denda" => $this->input->post('denda', true),
             "bulan_bayar" => $this->input->post('bulan_bayar', true),

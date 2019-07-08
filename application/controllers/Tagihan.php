@@ -63,14 +63,17 @@ class Tagihan extends CI_Controller
 
         //$this->load->view('tagihan/tambah');
 
-        $this->form_validation->set_rules('tagihan', 'Nomor Tagihan', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
-        $this->form_validation->set_rules('no_ktp', 'Nomor KTP', 'required');
+        $this->form_validation->set_rules('no_pelanggan', 'No Pelanggan', 'required|numeric');
         $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-        $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|numeric|min_length[11]|max_length[12]');
-        $this->form_validation->set_rules('foto_ktp', 'Foto KTP', 'required');
+        $this->form_validation->set_rules('biaya_air', 'Biaya Air', 'required|numeric');
+        $this->form_validation->set_rules('std_awal', 'Standar Awal', 'required|numeric');
+        $this->form_validation->set_rules('std_akhir', 'Standar Akhir', 'required|numeric');
+        $this->form_validation->set_rules('denda', 'Denda', 'numeric');
+        $this->form_validation->set_rules('biaya_segel', 'Biaya Segel', 'numeric');
+        $this->form_validation->set_rules('angs_air', 'Angsuran Air', 'numeric');
+        $this->form_validation->set_rules('angs_non_air', 'Angsuran non-Air', 'numeric');
+        $this->form_validation->set_rules('total_tagihan', 'Total Tagihan', 'required|numeric');
+
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -90,20 +93,21 @@ class Tagihan extends CI_Controller
         redirect('tagihan');
     }
 
-    public function ubah($tagihan_air)
+    public function ubah($no_tagihan)
     {
         $data['judul'] = 'Form Ubah Data Tagihan';
-        $data['tagihan_air'] = $this->Tagihan_model->getTagihanById($tagihan_air);
-        $data['pilih_tarif'] = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3'];
-
-        $this->form_validation->set_rules('tagihan_air', 'Nomor Tagihan', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
-        $this->form_validation->set_rules('no_ktp', 'Nomor KTP', 'required|numeric|min_length[16]|max_length[16]');
+        $data['tagihan_air'] = $this->Tagihan_model->getTagihanById($no_tagihan);
+        
+        $this->form_validation->set_rules('no_pelanggan', 'No Pelanggan', 'required|numeric');
         $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-        $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|numeric|min_length[11]|max_length[12]');
-        $this->form_validation->set_rules('foto_ktp', 'Foto KTP', 'required');
+        $this->form_validation->set_rules('biaya_air', 'Biaya Air', 'required|numeric');
+        $this->form_validation->set_rules('std_awal', 'Standar Awal', 'required|numeric');
+        $this->form_validation->set_rules('std_akhir', 'Standar Akhir', 'required|numeric');
+        $this->form_validation->set_rules('denda', 'Denda', 'numeric');
+        $this->form_validation->set_rules('biaya_segel', 'Biaya Segel', 'numeric');
+        $this->form_validation->set_rules('angs_air', 'Angsuran Air', 'numeric');
+        $this->form_validation->set_rules('angs_non_air', 'Angsuran non-Air', 'numeric');
+        $this->form_validation->set_rules('total_tagihan', 'Total Tagihan', 'required|numeric');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);

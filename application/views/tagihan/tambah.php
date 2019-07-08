@@ -40,8 +40,7 @@
                         </div-->
 
                         <div class="form-group">
-                            <label for="no_daftar">No Daftar</label>
-                            <input type="text" name="no_daftar" class="form-control" id="no_daftar" readonly>
+                            <input type="hidden" type="text" name="no_daftar" class="form-control" id="no_daftar" readonly>
                             <small class="form-text text-danger"><?= form_error('no_daftar'); ?></small>
                             
                         </div>
@@ -107,9 +106,11 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="status_bayar">Status Bayar</label>
-                            <input type="text" name="status_bayar" class="form-control" id="status_bayar">
-                            <small class="form-text text-danger"><?= form_error('status_bayar'); ?></small>
+                        <label for="status_bayar">Status Bayar</label><p>
+                            <input type="radio" name="status_bayar" value="belum" checked<?PHP if(!empty($status_bayar) && $status_bayar == "belum") echo 'checked'; ?> /> Belum Bayar
+                            <input type="radio" name="status_bayar" value="sudah" disabled<?PHP if(!empty($status_bayar) && $status_bayar == "sudah") echo 'checked'; ?> /> Sudah Bayar
+                        <br>
+                            <small class="form-text text-danger"><?= form_error('status_bayar'); ?></small-->
                         </div>
 <!--                        
                         <div class="form-group">
