@@ -10,11 +10,11 @@ class Pdam_masalah extends REST_Controller{
 
     public function __construct(){
         parent::__construct();
-        $this->load->model('Masalah_model');
+        $this->load->model('Masalah_model_api');
     }
     
     public function index_get(){
-        $masalah = $this->Masalah_model->getMasalah();
+        $masalah = $this->Masalah_model_api->getMasalah();
         
         if($masalah){
             $this->response([
@@ -23,7 +23,7 @@ class Pdam_masalah extends REST_Controller{
             ], REST_Controller::HTTP_OK);
         }
     }
-
+/*
     public function index_delete(){
         $no_info = $this->delete('no_info');
 
@@ -98,4 +98,5 @@ class Pdam_masalah extends REST_Controller{
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
+*/
 }
