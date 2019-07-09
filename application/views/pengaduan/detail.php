@@ -7,16 +7,11 @@
                     Detail Data Pengaduan
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title"><?= $pengaduan['pengaduan']; ?></h5>
+                    <h5 class="card-title"><?= $pengaduan['id_pengaduan']; ?></h5>
                     <h6 class="card-subtitle mb-2 text-muted">
-                    <?= $pengaduan['nama']; ?></h6>
-                    <p class="card-text"><?= $pengaduan['no_ktp']; ?></p>
-                    <p class="card-text"><?= $pengaduan['alamat']; ?></p>
-                    <p class="card-text"><?= $pengaduan['email']; ?></p>
-                    <p class="card-text"><?= $pengaduan['no_hp']; ?></p>
-                    <p class="card-text"><?= $pengaduan['foto_ktp']; ?></p>
-                    <p class="card-text"><?= $pengaduan['pilih_tarif']; ?></p>
-                    <p class="card-text"><?= $pengaduan['password']; ?></p>
+                    <p class="card-text"><?= $pengaduan['keluhan']; ?></p>
+                    <p class="card-text"><?= $pengaduan['tanggapan']; ?></p>
+                    <p class="card-text"><?= $pengaduan['no_daftar']; ?></p>
                     
                     <a href="<?= base_url(); ?>pengaduan" class="btn btn-primary">Kembali</a>
                 </div>

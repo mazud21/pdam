@@ -52,38 +52,30 @@ class Pengaduan extends CI_Controller
         redirect('Pengaduan');
     }
 
-    public function detail($pengaduan)
+    public function detail($id_pengaduan)
     {
         $data['judul'] = 'Detail Data Pengaduan';
-        $data['Pengaduan'] = $this->Pengaduan_model->getPengaduanById($pengaduan);
+        $data['pengaduan'] = $this->Pengaduan_model->getPengaduanById($id_pengaduan);
         $this->load->view('templates/header', $data);
-        $this->load->view('Pengaduan/detail', $data);
+        $this->load->view('pengaduan/detail', $data);
         $this->load->view('templates/footer');
     }
 
-    public function ubah($pengaduan)
+    public function ubah($id_pengaduan)
     {
         $data['judul'] = 'Form Ubah Data Pengaduan';
-        $data['Pengaduan'] = $this->Pengaduan_model->getPengaduanById($pengaduan);
-        $data['pilih_tarif'] = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3'];
-
-        $this->form_validation->set_rules('pengaduan', 'Nomor Pengaduan', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
-        $this->form_validation->set_rules('no_ktp', 'Nomor KTP', 'required|numeric|min_length[16]|max_length[16]');
-        $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-        $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|numeric|min_length[11]|max_length[12]');
-        $this->form_validation->set_rules('foto_ktp', 'Foto KTP', 'required');
-
+        $data['pengaduan'] = $this->Pengaduan_model->getPengaduanById($id_pengaduan);
+        
+        $this->form_validation->set_rules('id_pengaduan', 'Id Pengaduan', 'required');
+        
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
-            $this->load->view('Pengaduan/ubah', $data);
+            $this->load->view('pengaduan/ubah', $data);
             $this->load->view('templates/footer');
         } else {
             $this->Pengaduan_model->ubahDataPengaduan();
             $this->session->set_flashdata('flash', 'Diubah');
-            redirect('Pengaduan');
+            redirect('pengaduan');
         }
     }
 

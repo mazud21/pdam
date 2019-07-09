@@ -3,7 +3,12 @@
 class Pengaduan_model extends CI_model {
     public function getAllPengaduan()
     {
-        return $this->db->get('pengaduan')->result_array();
+        //return $this->db->get('pengaduan')->result_array();
+        $this->db->select('*');
+        $this->db->from('pelanggan');
+        $this->db->join('pengaduan','pengaduan.no_daftar=pelanggan.no_daftar');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function tambahDataPengaduan()
@@ -29,26 +34,26 @@ class Pengaduan_model extends CI_model {
         $this->db->delete('pengaduan', ['pengaduan' => $pengaduan]);
     }
 
-    public function getPengaduanById($pengaduan)
+    public function getPengaduanById($id_pengaduan)
     {
-        return $this->db->get_where('pengaduan', ['pengaduan' => $pengaduan])->row_array();
+        $this->db->select('*');
+        $this->db->from('pelanggan');
+        $this->db->join('pengaduan', 'pengaduan.no_daftar=pelanggan.no_daftar');
+        $this->db->where('id_pengaduan',$id_pengaduan);
+        $query = $this->db->get();
+        return $query->row_array();
     }
 
     public function ubahDataPengaduan()
     {
         $data = [
-            "pengaduan" => $this->input->post('pengaduan', true),
-            "password" => $this->input->post('password', true),
-            "no_ktp" => $this->input->post('no_ktp', true),
-            "nama" => $this->input->post('nama', true),
-            "alamat" => $this->input->post('alamat', true),
-            "email" => $this->input->post('email', true),
-            "no_hp" => $this->input->post('no_hp', true),
-            "foto_ktp" => $this->input->post('foto_ktp', true),
-            "pilih_tarif" => $this->input->post('pilih_tarif', true)
+            "id_pengaduan" => $this->input->post('id_pengaduan', true),
+            "keluhan" => $this->input->post('keluhan', true),
+            "tanggapan" => $this->input->post('tanggapan', true),
+            //"no_daftar" => $this->input->post('no_daftar', true)
         ];
 
-        $this->db->where('pengaduan', $this->input->post('pengaduan'));
+        $this->db->where('id_pengaduan', $this->input->post('id_pengaduan'));
         $this->db->update('pengaduan', $data);
     }
 

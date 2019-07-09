@@ -44,13 +44,14 @@
             <ul class="list-group">
                 <?php foreach ($pengaduan as $peng) : ?>
                 <li class="list-group-item">
+                    <?= $peng['id_pengaduan']; ?>
                     <?= $peng['nama']; ?>
                     <!--a href="<?= base_url(); ?>pengaduan/hapus/<?= $peng['pengaduan']; ?>"
                         class="badge badge-danger float-right tombol-hapus">hapus</a-->
-                    <a href="<?= base_url(); ?>pengaduan/ubah/<?= $peng['pengaduan']; ?>"
-                        class="badge badge-success float-right">ubah</a>
-                    <a href="<?= base_url(); ?>pengaduan/detail/<?= $peng['pengaduan']; ?>"
-                        class="badge badge-primary float-right">detail</a>
+                    <a href="<?= base_url(); ?>pengaduan/ubah/<?= $peng['id_pengaduan']; ?>"
+                        class="badge badge-success float-right">Tanggapi</a>
+                    <!--a href="<?= base_url(); ?>pengaduan/detail/<?= $peng['id_pengaduan']; ?>"
+                        class="badge badge-primary float-right">detail</a-->
                 </li>
                 <?php endforeach; ?>
             </ul>

@@ -26,7 +26,7 @@
                         
                         <div class="form-group">
                             <label for="nama">Nama Pelanggan</label>
-                            <input type="text" name="nama" class="form-control" id="nama" value="<?= $tagihan_air['nama']; ?>">
+                            <input type="text" name="nama" class="form-control" id="nama" value="<?= $tagihan_air['nama']; ?>" readonly>
                             <small class="form-text text-danger"><?= form_error('nama'); ?></small>
                         </div>
 
@@ -93,7 +93,7 @@
              
                         <div class="form-group">
                             <label for="tgl_bayar">Tanggal Bayar</label>
-                            <input type="text" name="tgl_bayar" class="form-control" id="tgl_bayar" value="<?php echo date('d-m-Y'); ?>" readonly>
+                            <input type="text" name="tgl_bayar" class="form-control" id="tgl_bayar" value="<?= date('Y-m-d'); ?>" readonly>
                             <small class="form-text text-danger"><?= form_error('tgl_bayar'); ?></small>
                         </div>
 
