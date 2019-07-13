@@ -3,8 +3,8 @@
 class Form extends CI_Controller {
     public function __construct(){
         parent::__construct();
-        $this->load->model('Tagihan_Model');
-        $this->load->model('Pelanggan_Model');
+        $this->load->model('Tagihan_model');
+        $this->load->model('Pelanggan_model');
         
       }
       public function index(){
@@ -15,7 +15,7 @@ class Form extends CI_Controller {
         // Ambil data NIS yang dikirim via ajax post
         $no_pelanggan = $this->input->post('no_pelanggan');
         
-        $pelanggan = $this->Tagihan_Model->viewByNP($no_pelanggan);
+        $pelanggan = $this->Tagihan_model->viewByNP($no_pelanggan);
         
         if( ! empty($pelanggan)){ // Jika data siswa ada/ditemukan
           // Buat sebuah array
