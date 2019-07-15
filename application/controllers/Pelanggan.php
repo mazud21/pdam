@@ -13,9 +13,11 @@ class Pelanggan extends CI_Controller
     {
         $data['judul'] = 'Daftar Pelanggan';
         $data['pelanggan'] = $this->Pelanggan_model->getAllPelanggan();
+        /*
         if( $this->input->post('keyword') ) {
             $data['pelanggan'] = $this->Pelanggan_model->cariDataPelanggan();
         }
+        */
         $this->load->view('templates/header', $data);
         $this->load->view('pelanggan/index', $data);
         $this->load->view('templates/footer');
@@ -23,6 +25,7 @@ class Pelanggan extends CI_Controller
 
     public function tambah()
     {
+        $data = array();
         $data['judul'] = 'Form Tambah Data Pelanggan';
 
         $this->form_validation->set_rules('no_pelanggan', 'Nomor Pelanggan', 'required');
@@ -32,13 +35,24 @@ class Pelanggan extends CI_Controller
         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|numeric|min_length[11]|max_length[12]');
-        $this->form_validation->set_rules('foto_ktp', 'Foto KTP', 'required');
+        //$this->form_validation->set_rules('foto_ktp', 'Foto KTP', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('pelanggan/tambah');
             $this->load->view('templates/footer');
-        } else {
+        } else if ($this->input->post('tambah')) {
+
+            $upload = $this->Pelanggan_model->upload();
+
+            if($upload['result']=="success"){
+                $this->Pelanggan_model->tambahDataPelanggan($upload);
+                redirect('pelanggan');
+            } else {
+                $data['message']=$upload['error'];
+            }
+
+//            $this->load->view('gambar/form', $data);
             $this->Pelanggan_model->tambahDataPelanggan();
             $this->session->set_flashdata('flash', 'Ditambahkan');
             redirect('pelanggan');

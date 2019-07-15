@@ -6,7 +6,30 @@ class Pelanggan_model extends CI_model {
         return $this->db->get('pelanggan')->result_array();
     }
 
-    public function tambahDataPelanggan()
+    public function upload(){
+        $config['upload_path']='./images/';
+        $config['allowed_types']='jpg|png|jpeg';
+        $config['max_size']='2048';
+        $config['remove_space']=TRUE;
+
+        $this->load->library('upload',$config);
+
+        if($this->upload->do_upload('foto_ktp')){
+            $return = array(
+                'result'=>'success', 
+                'file'=> $this->upload->data(), 
+                'error'=>'');
+                return $return;
+        } else {
+            $return = array(
+                'result'=>'failed',
+                'file'=>'',
+                'error'=> $this->upload->display_errors());
+                return $return;
+        }
+    }
+
+    public function tambahDataPelanggan($upload)
     {
         $data = [
             "no_pelanggan" => $this->input->post('no_pelanggan', true),
@@ -16,7 +39,7 @@ class Pelanggan_model extends CI_model {
             "alamat" => $this->input->post('alamat', true),
             "email" => $this->input->post('email', true),
             "no_hp" => $this->input->post('no_hp', true),
-            "foto_ktp" => $this->input->post('foto_ktp', true),
+            "foto_ktp" => $upload['file']['file_name'],
             "pilih_tarif" => $this->input->post('pilih_tarif', true)
         ];
 

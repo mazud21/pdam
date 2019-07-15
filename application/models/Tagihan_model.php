@@ -16,7 +16,7 @@ class Tagihan_model extends CI_model {
     {
         $this->db->select('*');
         $this->db->from('pelanggan');
-        $this->db->join('tagihan_air', 'tagihan_air.no_daftar=pelanggan.no_daftar');
+        $this->db->join('tagihan_air', 'pelanggan.no_daftar=tagihan_air.no_daftar');
         $this->db->where('no_tagihan',$no_tagihan);
         $query = $this->db->get();
         return $query->row_array();

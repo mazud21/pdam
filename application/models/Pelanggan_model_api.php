@@ -11,11 +11,12 @@ class Pelanggan_model_api extends CI_Model{
         }            
     }
     
+/*
     public function deletePelanggan($no_pelanggan){
         $this->db->delete('pelanggan', ['no_pelanggan' => $no_pelanggan]);
         return $this->db->affected_rows();
     }
-
+*/
     public function createPelanggan($data_pell){
         $this->db->insert('pelanggan', $data_pell);
         return $this->db->affected_rows();

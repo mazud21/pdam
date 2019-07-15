@@ -1,5 +1,5 @@
 <div class="container">
-
+<div style="color: red;"><?php echo (isset($message))? $message : ""; ?></div>
     <div class="row mt-3">
         <div class="col-md-6">
 
@@ -8,6 +8,8 @@
                     Form Tambah Data Pelanggan
                 </div>
                 <div class="card-body">
+                <?= form_open("pelanggan/tambah", 
+                            array('enctype'=>'multipart/form-data')); ?>
                     <form action="" method="post">
                         <div class="form-group">
                             <label for="no_pelanggan">Nomor Pelanggan</label>
@@ -52,9 +54,10 @@
                         </div>
                         
                         <div class="form-group">
+                            
                             <label for="foto_ktp">Foto KTP</label>
-                            <input type="text" name="foto_ktp" class="form-control" id="foto_ktp">
-                            <small class="form-text text-danger"><?= form_error('foto_ktp'); ?></small>
+                            <input type="file" name="foto_ktp" class="form-control" id="foto_ktp">
+                            <!--small class="form-text text-danger"><?= form_error('foto_ktp'); ?></small-->
                         </div>
 
                         <div class="form-group">
@@ -69,8 +72,9 @@
                             </select>
                         </div>
 
-                        <button type="submit" name="tambah" class="btn btn-primary float-right">Tambah Data</button>
+                        <input type="submit" name="tambah" class="btn btn-primary float-right" value='Tambah Data'></button>
                     </form>
+                    <?= form_close(); ?>
                 </div>
             </div>
 

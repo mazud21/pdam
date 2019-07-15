@@ -10,20 +10,33 @@ class Pdam_tagihan extends REST_Controller{
 
     public function __construct(){
         parent::__construct();
-        $this->load->model('Tagihan_model');
+        $this->load->model('Tagihan_model_api');
     }
     
     public function index_get(){
-        $tagihan = $this->Tagihan_model->getTagihan();
+        //$tagihan = $this->Tagihan_model_api->getTagihan($no_tagihan);
         
+        $no_daftar = $this->get('no_daftar');
+
+        if ($no_daftar === null) {
+            $tagihan = $this->Tagihan_model_api->getTagihan();
+        } else {
+            $tagihan = $this->Tagihan_model_api->getTagihan($no_daftar);
+        }
+
         if($tagihan){
             $this->response([
                 'status' => true,
                 'data' => $tagihan
             ], REST_Controller::HTTP_OK);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'Data tidak ditemukan !'
+            ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
-    
+/*    
     public function index_delete(){
         $no_tagihan = $this->delete('no_tagihan');
 
@@ -106,4 +119,5 @@ class Pdam_tagihan extends REST_Controller{
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
     }
+*/
 }
