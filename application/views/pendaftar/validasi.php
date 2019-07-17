@@ -5,14 +5,14 @@
 
             <div class="card">
                 <div class="card-header">
-                    Form Ubah Data Pelanggan
+                    Form Validasi Pendaftar
                 </div>
                 <div class="card-body">
                     <form action="" method="post">
-                        <!--input type="hidden" name="id" value="<?= $pelanggan['no_pelanggan']; ?>" readonly-->
+                        <input type="hidden" name="no_daftar" value="<?= $pelanggan['no_daftar']; ?>" readonly>
                         <div class="form-group">
                             <label for="no_pelanggan">Nomor Pelanggan</label>
-                            <input type="text" name="no_pelanggan" class="form-control" id="no_pelanggan" value="<?= $pelanggan['no_pelanggan']; ?>" readonly>
+                            <input type="text" name="no_pelanggan" class="form-control" id="no_pelanggan" value="<?= $pelanggan['no_pelanggan']; ?>">
                             <small class="form-text text-danger"><?= form_error('no_pelanggan'); ?></small>
                         </div>
 
@@ -24,54 +24,46 @@
 
                         <div class="form-group">
                             <label for="no_ktp">Nomor KTP</label>
-                            <input type="text" name="no_ktp" class="form-control" id="no_ktp" value="<?= $pelanggan['no_ktp']; ?>">
+                            <input type="text" name="no_ktp" class="form-control" id="no_ktp" value="<?= $pelanggan['no_ktp']; ?>" readonly>
                             <small class="form-text text-danger"><?= form_error('no_ktp'); ?></small>
                         </div>
 
                         <div class="form-group">
                             <label for="nama">Nama</label>
-                            <input type="text" name="nama" class="form-control" id="nama" value="<?= $pelanggan['nama']; ?>">
+                            <input type="text" name="nama" class="form-control" id="nama" value="<?= $pelanggan['nama']; ?>"readonly>
                             <small class="form-text text-danger"><?= form_error('nama'); ?></small>
                         </div>
 
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
-                            <input type="text" name="alamat" class="form-control" id="alamat" value="<?= $pelanggan['alamat']; ?>">
+                            <input type="text" name="alamat" class="form-control" id="alamat" value="<?= $pelanggan['alamat']; ?>"readonly>
                             <small class="form-text text-danger"><?= form_error('alamat'); ?></small>
                         </div>
                         
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" name="email" class="form-control" id="email" value="<?= $pelanggan['email']; ?>">
+                            <input type="text" name="email" class="form-control" id="email" value="<?= $pelanggan['email']; ?>"readonly>
                             <small class="form-text text-danger"><?= form_error('email'); ?></small>
                         </div>
                         
                         <div class="form-group">
                             <label for="no_hp">Nomor HP</label>
-                            <input type="text" name="no_hp" class="form-control" id="no_hp" value="<?= $pelanggan['no_hp']; ?>">
+                            <input type="text" name="no_hp" class="form-control" id="no_hp" value="<?= $pelanggan['no_hp']; ?>"readonly>
                             <small class="form-text text-danger"><?= form_error('no_hp'); ?></small>
                         </div>
                         
                         <div class="form-group">
-                            <label for="foto_ktp">Foto KTP</label>
-                            <p><img src="<?= base_url('./images/'.$pelanggan['foto_ktp'])?>" 
-                            width="200px" height="100px">
-                            <!--input type="file" name="foto_ktp" class="form-control" id="foto_ktp"-->
-
+                            <label for="foto_ktp">Foto KTP</label><p>
+                            <img src="<?= base_url('./images/'.$pelanggan['foto_ktp'])?>" 
+                            width='200' height='125'>
+                            
                         </div>
                         <div class="form-group">
                             <label for="pilih_tarif">Pilih Tarif</label>
-                            <select class="form-control" id="pilih_tarif" name="pilih_tarif">
-                                <?php foreach( $pilih_tarif as $pt ) : ?>
-                                    <?php if( $pt == $pelanggan['pilih_tarif'] ) : ?>
-                                        <option value="<?= $pt; ?>" selected><?= $pt; ?></option>
-                                    <?php else : ?>
-                                        <option value="<?= $pt; ?>"><?= $pt; ?></option>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </select>
+                            <input type="text" name="pilih_tarif" class="form-control" id="pilih_tarif" value="<?= $pelanggan['pilih_tarif']; ?>"readonly>
                         </div>
-                        <button type="submit" name="ubah" class="btn btn-primary float-right">Ubah Data</button>
+                        <button type="submit" name="validasi" class="btn btn-primary float-right">Validasi Pendaftar</button>
+                        <a href="<?= base_url(); ?>pendaftar" class="btn btn-primary float-right mx-2" >Kembali</a>
                     </form>
                 </div>
             </div>

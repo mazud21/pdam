@@ -1,15 +1,16 @@
 <?php 
 
-class Pelanggan_model extends CI_model {
-    public function getAllPelanggan()
+class Pendaftar_model extends CI_model {
+    public function getAllPendaftar()
     {
         //return $this->db->get('pelanggan')->result_array();
         
         $this->db->select('*');
         $this->db->from('pelanggan');
-        $this->db->where('no_pelanggan is not null');
+        $this->db->where('no_pelanggan is null');
         $query = $this->db->get();
         return $query->result_array();
+        
     }
 
     public function upload(){
@@ -17,15 +18,17 @@ class Pelanggan_model extends CI_model {
         $config['allowed_types']='jpg|png|jpeg';
         $config['max_size']='2048';
         $config['remove_space']=TRUE;
-
+        $config['overwrite']=TRUE;
+        
         $this->load->library('upload',$config);
 
-        if($this->upload->do_upload('foto_ktp')){
+        if ($this->upload->do_upload('foto_ktp')) {
             $return = array(
                 'result'=>'success', 
                 'file'=> $this->upload->data(), 
                 'error'=>'');
                 return $return;
+            
         } else {
             $return = array(
                 'result'=>'failed',
@@ -35,11 +38,10 @@ class Pelanggan_model extends CI_model {
         }
     }
 
-    public function tambahDataPelanggan($upload)
+    
+    public function tambahDataPendaftar($upload)
     {
         $data = [
-            "no_pelanggan" => $this->input->post('no_pelanggan', true),
-            "password" => $this->input->post('password', true),
             "no_ktp" => $this->input->post('no_ktp', true),
             "nama" => $this->input->post('nama', true),
             "alamat" => $this->input->post('alamat', true),
@@ -51,28 +53,15 @@ class Pelanggan_model extends CI_model {
 
         $this->db->insert('pelanggan', $data);
     }
+    
 
-    public function ubahDataPelanggan(/*$upload*/)
+    public function getPendaftarById($no_daftar)
     {
-        /*
-        if (!$upload['file']['file_name']) {
-            $data = [
-                "no_pelanggan" => $this->input->post('no_pelanggan', true),
-                "password" => $this->input->post('password', true),
-                "no_ktp" => $this->input->post('no_ktp', true),
-                "nama" => $this->input->post('nama', true),
-                "alamat" => $this->input->post('alamat', true),
-                "email" => $this->input->post('email', true),
-                "no_hp" => $this->input->post('no_hp', true),
-                //"foto_ktp" => $upload['file']['file_name'],
-                "pilih_tarif" => $this->input->post('pilih_tarif', true)
-            ];
-    
-            $this->db->where('no_pelanggan', $this->input->post('no_pelanggan'));
-            $this->db->update('pelanggan', $data);
+        return $this->db->get_where('pelanggan', ['no_daftar' => $no_daftar])->row_array();
+    }
 
-        } else {
-            */
+    public function validasi()
+    {
             $data = [
                 "no_pelanggan" => $this->input->post('no_pelanggan', true),
                 "password" => $this->input->post('password', true),
@@ -84,31 +73,23 @@ class Pelanggan_model extends CI_model {
                 //"foto_ktp" => $upload['file']['file_name'],
                 "pilih_tarif" => $this->input->post('pilih_tarif', true)
             ];
-    
-            $this->db->where('no_pelanggan', $this->input->post('no_pelanggan'));
-            $this->db->update('pelanggan', $data);
-        //}
+
+        $this->db->where('no_daftar', $this->input->post('no_daftar'));
+        $this->db->update('pelanggan', $data);
         
     }
 
-    public function hapusDataPelanggan($no_pelanggan)
+    public function hapusDataPendaftar($no_daftar)
     {
         // $this->db->where('id', $id);
-        $this->db->delete('pelanggan', ['no_pelanggan' => $no_pelanggan]);
+        $this->db->delete('pelanggan', ['no_daftar' => $no_daftar]);
     }
 
-    public function getPelangganById($no_pelanggan)
-    {
-        return $this->db->get_where('pelanggan', ['no_pelanggan' => $no_pelanggan])->row_array();
-    }
-
-    public function cariDataPelanggan()
+    public function cariDataPendaftar()
     {
         $keyword = $this->input->post('keyword', true);
+        $this->db->like('no_daftar', $keyword);
         $this->db->like('nama', $keyword);
-        $this->db->or_like('jurusan', $keyword);
-        $this->db->or_like('nrp', $keyword);
-        $this->db->or_like('email', $keyword);
         return $this->db->get('pelanggan')->result_array();
     }
 }

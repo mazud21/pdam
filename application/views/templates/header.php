@@ -30,6 +30,7 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="<?= base_url(); ?>">Home
             <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="<?= base_url(); ?>pendaftar">Pendaftar</a>
           <a class="nav-item nav-link" href="<?= base_url(); ?>pelanggan">Pelanggan</a>
           <a class="nav-item nav-link" href="<?= base_url(); ?>tagihan">Tagihan Air</a>
           <a class="nav-item nav-link" href="<?= base_url(); ?>pengaduan">Pengaduan</a>
