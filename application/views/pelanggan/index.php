@@ -51,6 +51,7 @@
                         class="badge badge-success float-right">ubah</a>
                     <a href="<?= base_url(); ?>pelanggan/detail/<?= $pell['no_pelanggan']; ?>"
                         class="badge badge-primary float-right">detail</a>
+                        
                 </li>
                 <?php endforeach; ?>
             </ul>

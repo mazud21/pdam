@@ -46,6 +46,45 @@ class Pelanggan_model extends CI_model {
         $this->db->insert('pelanggan', $data);
     }
 
+    public function ubahDataPelanggan(/*$upload*/)
+    {
+        /*
+        if (!$upload['file']['file_name']) {
+            $data = [
+                "no_pelanggan" => $this->input->post('no_pelanggan', true),
+                "password" => $this->input->post('password', true),
+                "no_ktp" => $this->input->post('no_ktp', true),
+                "nama" => $this->input->post('nama', true),
+                "alamat" => $this->input->post('alamat', true),
+                "email" => $this->input->post('email', true),
+                "no_hp" => $this->input->post('no_hp', true),
+                //"foto_ktp" => $upload['file']['file_name'],
+                "pilih_tarif" => $this->input->post('pilih_tarif', true)
+            ];
+    
+            $this->db->where('no_pelanggan', $this->input->post('no_pelanggan'));
+            $this->db->update('pelanggan', $data);
+
+        } else {
+            */
+            $data = [
+                "no_pelanggan" => $this->input->post('no_pelanggan', true),
+                "password" => $this->input->post('password', true),
+                "no_ktp" => $this->input->post('no_ktp', true),
+                "nama" => $this->input->post('nama', true),
+                "alamat" => $this->input->post('alamat', true),
+                "email" => $this->input->post('email', true),
+                "no_hp" => $this->input->post('no_hp', true),
+                "foto_ktp" => $upload['file']['file_name'],
+                "pilih_tarif" => $this->input->post('pilih_tarif', true)
+            ];
+    
+            $this->db->where('no_pelanggan', $this->input->post('no_pelanggan'));
+            $this->db->update('pelanggan', $data);
+        //}
+        
+    }
+
     public function hapusDataPelanggan($no_pelanggan)
     {
         // $this->db->where('id', $id);
@@ -55,24 +94,6 @@ class Pelanggan_model extends CI_model {
     public function getPelangganById($no_pelanggan)
     {
         return $this->db->get_where('pelanggan', ['no_pelanggan' => $no_pelanggan])->row_array();
-    }
-
-    public function ubahDataPelanggan()
-    {
-        $data = [
-            "no_pelanggan" => $this->input->post('no_pelanggan', true),
-            "password" => $this->input->post('password', true),
-            "no_ktp" => $this->input->post('no_ktp', true),
-            "nama" => $this->input->post('nama', true),
-            "alamat" => $this->input->post('alamat', true),
-            "email" => $this->input->post('email', true),
-            "no_hp" => $this->input->post('no_hp', true),
-            "foto_ktp" => $this->input->post('foto_ktp', true),
-            "pilih_tarif" => $this->input->post('pilih_tarif', true)
-        ];
-
-        $this->db->where('no_pelanggan', $this->input->post('no_pelanggan'));
-        $this->db->update('pelanggan', $data);
     }
 
     public function cariDataPelanggan()

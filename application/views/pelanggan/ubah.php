@@ -54,8 +54,10 @@
                         
                         <div class="form-group">
                             <label for="foto_ktp">Foto KTP</label>
-                            <input type="text" name="foto_ktp" class="form-control" id="foto_ktp" value="<?= $pelanggan['foto_ktp']; ?>">
-                            <small class="form-text text-danger"><?= form_error('foto_ktp'); ?></small>
+                            <p><img src="<?= base_url('./images/'.$pelanggan['foto_ktp'])?>" 
+                            width="200px" height="100px">
+                            <input type="file" name="foto_ktp" class="form-control" id="foto_ktp">
+
                         </div>
                         <div class="form-group">
                             <label for="pilih_tarif">Pilih Tarif</label>

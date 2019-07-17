@@ -14,9 +14,8 @@
                     <p class="card-text"><?= $pelanggan['alamat']; ?></p>
                     <p class="card-text"><?= $pelanggan['email']; ?></p>
                     <p class="card-text"><?= $pelanggan['no_hp']; ?></p>
-                    <p class="card-text"><?= $pelanggan['foto_ktp']; ?></p>
-                    <img src='".base_url("images/".$pelanggan->foto_ktp)."' 
-                    width='200' height='125'>
+                    <img src="<?= base_url('./images/'.$pelanggan['foto_ktp'])?>" 
+                    width="200px" height="100px">
                     <p class="card-text"><?= $pelanggan['pilih_tarif']; ?></p>
                     <p class="card-text"><?= $pelanggan['password']; ?></p>
                     
