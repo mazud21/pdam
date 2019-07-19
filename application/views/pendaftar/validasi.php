@@ -12,7 +12,11 @@
                         <input type="hidden" name="no_daftar" value="<?= $pelanggan['no_daftar']; ?>" readonly>
                         <div class="form-group">
                             <label for="no_pelanggan">Nomor Pelanggan</label>
-                            <input type="text" name="no_pelanggan" class="form-control" id="no_pelanggan" value="<?= $pelanggan['no_pelanggan']; ?>">
+                            <input type="text" name="no_pelanggan" class="form-control" id="no_pelanggan" 
+                                value="<?= 
+                                    //$sql = 'SELECT COUNT(no_pelanggan) FROM pelanggan';
+                                    $pelanggan['no_pelanggan']+'1';
+                                ?>" readonly>
                             <small class="form-text text-danger"><?= form_error('no_pelanggan'); ?></small>
                         </div>
 
@@ -55,7 +59,7 @@
                         <div class="form-group">
                             <label for="foto_ktp">Foto KTP</label><p>
                             <img src="<?= base_url('./images/'.$pelanggan['foto_ktp'])?>" 
-                            width='200' height='125'>
+                            width='200px' height='125px'>
                             
                         </div>
                         <div class="form-group">
