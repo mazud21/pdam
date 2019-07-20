@@ -14,15 +14,14 @@
                             <label for="no_pelanggan">Nomor Pelanggan</label>
                             <input type="text" name="no_pelanggan" class="form-control" id="no_pelanggan" 
                                 value="<?= 
-                                    //$sql = 'SELECT COUNT(no_pelanggan) FROM pelanggan';
-                                    $pelanggan['no_pelanggan']+'1';
+                                    $no_pelanggan+1;
                                 ?>" readonly>
                             <small class="form-text text-danger"><?= form_error('no_pelanggan'); ?></small>
                         </div>
 
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="text" name="password" class="form-control" id="password" value="<?= $pelanggan['password']; ?>">
+                            <input type="text" name="password" class="form-control" id="password" value="<?= random_string('numeric', 8); ?>" readonly>
                             <small class="form-text text-danger"><?= form_error('password'); ?></small>
                         </div>
 

@@ -56,7 +56,9 @@ class Pendaftar extends CI_Controller
     {
         $data['judul'] = 'Form Ubah Data Pendaftar';
         $data['pelanggan'] = $this->Pendaftar_model->getPendaftarById($no_daftar);
-        
+        $data['no_pelanggan'] = $this->Pendaftar_model->getCountNoPell();
+        $data['password'] = $this->Pendaftar_model->getRandomPass();
+
         $this->form_validation->set_rules('no_pelanggan', 'Nomor Pelanggan', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         
@@ -69,6 +71,7 @@ class Pendaftar extends CI_Controller
                 $this->session->set_flashdata('flash', 'Ditambahkan');
                 redirect('pelanggan');
         }
+
     }
     
     public function hapus($no_daftar)

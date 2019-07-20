@@ -53,11 +53,30 @@ class Pendaftar_model extends CI_model {
 
         $this->db->insert('pelanggan', $data);
     }
-    
+
+    public function getRandomPass(){
+        $this->load->helper('string');
+        random_string('numeric', 8);
+        
+    }
 
     public function getPendaftarById($no_daftar)
     {
         return $this->db->get_where('pelanggan', ['no_daftar' => $no_daftar])->row_array();
+    }
+
+    public function getCountNoPell()
+    {
+        //return $this->db->get('pelanggan')->result_array();
+        
+        $this->db->select_max('no_pelanggan');
+        $this->db->from('pelanggan');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row('no_pelanggan');
+        } else {
+            return 1;
+        }            
     }
 
     public function validasi()
