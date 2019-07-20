@@ -8,6 +8,7 @@ class Pelanggan_model extends CI_model {
         $this->db->select('*');
         $this->db->from('pelanggan');
         $this->db->where('no_pelanggan is not null');
+        $this->db->order_by('no_pelanggan','ASC');
         $query = $this->db->get();
         return $query->result_array();
     }
