@@ -1,3 +1,10 @@
+<script>
+function copytextbox() {
+    document.getElementById('message').value = 
+    "Nomor Pelanggan = " + document.getElementById('no_pelanggan').value 
+    + " || Password = " + document.getElementById('password').value
+}
+    </script>
 <div class="container">
 
     <div class="row mt-3">
@@ -15,14 +22,24 @@
                             <input type="text" name="no_pelanggan" class="form-control" id="no_pelanggan" 
                                 value="<?= 
                                     $no_pelanggan+1;
-                                ?>" readonly>
+                                ?>" onclick="copytextbox();"  readonly>
                             <small class="form-text text-danger"><?= form_error('no_pelanggan'); ?></small>
                         </div>
 
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="text" name="password" class="form-control" id="password" value="<?= random_string('numeric', 8); ?>" readonly>
+                            <input type="text" name="password" class="form-control" id="password" 
+                                value="<?= 
+                                    random_string('numeric', 8); 
+                                ?>" onclick="copytextbox1();" readonly>
                             <small class="form-text text-danger"><?= form_error('password'); ?></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <input type="text" name="message" class="form-control" id="message"  readonly>
+                            <small class="form-text text-danger">
+                            <?= form_error('message'); ?></small>
                         </div>
 
                         <div class="form-group">
