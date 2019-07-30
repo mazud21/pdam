@@ -44,6 +44,7 @@
             <ul class="list-group">
                 <?php foreach ($pelanggan as $pell) : ?>
                 <li class="list-group-item">
+                    <?= $pell['no_pelanggan']; ?>
                     <?= $pell['nama']; ?>
                     <a href="<?= base_url(); ?>pelanggan/hapus/<?= $pell['no_pelanggan']; ?>"
                         class="badge badge-danger float-right tombol-hapus">hapus</a>

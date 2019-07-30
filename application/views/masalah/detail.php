@@ -11,7 +11,7 @@
                     <h6 class="card-subtitle mb-2 text-muted">
                     <?= $masalah_air['wilayah']; ?></h6>
                     <p class="card-text"><?= $masalah_air['hari']; ?></p>
-                    <p class="card-text"><?= $masalah_air['tanggal']; ?></p>
+                    <p class="card-text"><?= date('d M Y', strtotime($masalah_air['tanggal']))?></p>
                     <p class="card-text"><?= $masalah_air['estimasi']; ?></p>
                     <p class="card-text"><?= $masalah_air['kerusakan']; ?></p>
                     <p class="card-text"><?= $masalah_air['alternatif']; ?></p>

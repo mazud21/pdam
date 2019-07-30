@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <label for="foto_ktp">Foto KTP</label>
                             <p><img src="<?= base_url('./images/'.$pelanggan['foto_ktp'])?>" 
-                            width="200px" height="100px">
+                            width="200px" height="125px">
                             <!--input type="file" name="foto_ktp" class="form-control" id="foto_ktp"-->
 
                         </div>
@@ -72,6 +72,7 @@
                             </select>
                         </div>
                         <button type="submit" name="ubah" class="btn btn-primary float-right">Ubah Data</button>
+                        <a href="<?= base_url(); ?>pelanggan" class="btn btn-primary float-right mx-2" >Kembali</a>
                     </form>
                 </div>
             </div>
