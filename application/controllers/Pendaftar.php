@@ -7,6 +7,7 @@ class Pendaftar extends CI_Controller
         parent::__construct();
         $this->load->model('Pendaftar_model');
         $this->load->library('form_validation');
+        
     }
 
     public function index()
@@ -51,14 +52,14 @@ class Pendaftar extends CI_Controller
             }
         }
     }
-    
+
     public function validasi($no_daftar)
     {
         $data['judul'] = 'Form Ubah Data Pendaftar';
         $data['pelanggan'] = $this->Pendaftar_model->getPendaftarById($no_daftar);
         $data['no_pelanggan'] = $this->Pendaftar_model->getCountNoPell();
         $data['password'] = $this->Pendaftar_model->getRandomPass();
-
+        
         $this->form_validation->set_rules('no_pelanggan', 'Nomor Pelanggan', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         
@@ -67,8 +68,35 @@ class Pendaftar extends CI_Controller
             $this->load->view('pendaftar/validasi', $data);
             $this->load->view('templates/footer');
         } else {
+            
+                $config = [
+                    'mailtype'  => 'html',
+                    'charset'   => 'utf-8',
+                    'protocol'  => 'smtp',
+                    'smtp_host' => 'ssl://smtp.gmail.com',
+                    'smtp_user' => 'hmazud@gmail.com',    
+                    'smtp_pass' => '@Mazud_21',      
+                    'smtp_port' => '465',
+                    'crlf'      => "\r\n",
+                    'newline'   => "\r\n"
+                ];
+        
+                $to_email = $this->input->post('email');   
+                $message = $this->input->post('message');   
+            
+                $this->load->library('email', $config);
+            
+                $this->email->from('no-reply@pdam.com', 'PDAM Kabupaten Bantul');
+            
+                $this->email->to($to_email); 
+            
+                $this->email->subject('VALIDASI AKUN PDAM MOBILE');
+            
+                $this->email->message($message);
+            
+                $this->email->send();
                 $this->Pendaftar_model->validasi();
-                $this->session->set_flashdata('flash', 'Ditambahkan');
+                $this->session->set_flashdata('flash', 'Tervalidasi');
                 redirect('pelanggan');
         }
 
