@@ -7,18 +7,44 @@
                     Detail Data Pelanggan
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title"><?= $pelanggan['no_pelanggan']; ?></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                    <?= $pelanggan['nama']; ?></h6>
-                    <p class="card-text"><?= $pelanggan['no_ktp']; ?></p>
-                    <p class="card-text"><?= $pelanggan['alamat']; ?></p>
-                    <p class="card-text"><?= $pelanggan['email']; ?></p>
-                    <p class="card-text"><?= $pelanggan['no_hp']; ?></p>
-                    <img src="<?= base_url('./images/'.$pelanggan['foto_ktp'])?>" 
-                    width="200px" height="125px">
-                    <p class="card-text"><?= $pelanggan['pilih_tarif']; ?></p>
-                    <p class="card-text"><?= $pelanggan['password']; ?></p>
-                    
+                    <div class="form-group">
+                            <label for=""><h6 class="card-subtitle text-muted">Nomor Pelanggan</h6></label><br>
+                            <?= $pelanggan['no_pelanggan']; ?>
+                        </div>
+                    <div class="form-group">
+                            <label for=""><h6 class="card-subtitle text-muted">Nama</h6></label><br>
+                            <?= $pelanggan['nama']; ?>
+                        </div>
+                    <div class="form-group">
+                            <label for=""><h6 class="card-subtitle text-muted">Nomor KTP</h6></label><br>
+                            <?= $pelanggan['no_ktp']; ?>
+                        </div>
+                    <div class="form-group">
+                            <label for=""><h6 class="card-subtitle text-muted">Alamat</h6></label><br>
+                            <?= $pelanggan['alamat']; ?>
+                        </div>
+                    <div class="form-group">
+                            <label for=""><h6 class="card-subtitle text-muted">Alamat Email</h6></label><br>
+                            <?= $pelanggan['email']; ?>
+                        </div>
+                    <div class="form-group">
+                            <label for=""><h6 class="card-subtitle text-muted">Nomor HP</h6></label><br>
+                            <?= $pelanggan['no_hp']; ?>
+                        </div>
+                    <div class="form-group">
+                            <label for=""><h6 class="card-subtitle text-muted">Foto KTP</h6></label><br>
+                            <img src="<?= base_url('./images/'.$pelanggan['foto_ktp'])?>" 
+                            width="200px" height="125px">
+                        </div>
+                    <div class="form-group">
+                            <label for=""><h6 class="card-subtitle text-muted">Pilihan Tarif Air</h6></label><br>
+                            <?= $pelanggan['pilih_tarif']; ?>
+                        </div>
+                    <div class="form-group">
+                            <label for=""><h6 class="card-subtitle text-muted">Password</h6></label><br>
+                            <?= $pelanggan['password']; ?>
+                        </div>
+
                     <a href="<?= base_url(); ?>pelanggan" class="btn btn-primary">Kembali</a>
                 </div>
             </div>
