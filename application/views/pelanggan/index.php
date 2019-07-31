@@ -15,8 +15,8 @@
 
     <div class="row mt-3">
         <div class="col-md-6">
-            <a href="<?= base_url(); ?>pelanggan/tambah" class="btn btn-primary">Tambah
-                Data Pelanggan</a>
+            <!--a href="<?= base_url(); ?>pelanggan/tambah" class="btn btn-primary">Tambah
+                Data Pelanggan</a-->
         </div>
     </div>
 
