@@ -53,6 +53,7 @@
                         </div>
 
                         <button type="submit" name="tambah" class="btn btn-primary float-right">Tambah Data</button>
+                        <a href="<?= base_url(); ?>masalah" class="btn btn-secondary float-right mx-2">Kembali</a>
                     </form>
                 </div>
             </div>
