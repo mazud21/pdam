@@ -23,6 +23,32 @@ class Pdam_masalah extends REST_Controller{
             ], REST_Controller::HTTP_OK);
         }
     }
+
+    public function index_post(){
+        $data_masalah = [
+            'no_info' => $this->post('no_info'),
+            'wilayah' => $this->post('wilayah'),
+            'hari' => $this->post('hari'),
+            'tanggal' => $this->post('tanggal'),
+            'estimasi' => $this->post('estimasi'),
+            'kerusakan' => $this->post('kerusakan'),
+            'alternatif' => $this->post('alternatif'),
+            'penanganan' => $this->post('penanganan')
+        ];
+
+        if ($this->Masalah_model_api->createMasalah_air($data_masalah) > 0) {
+            $this->response([
+                'status' => true,
+                'message' => 'Info masalah air Berhasil ditambahkan'
+            ], REST_Controller::HTTP_CREATED);
+        } else {
+            $this->response([
+                'status' => false,
+                'data' => 'Gagal menambahkan info masalah air'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
+    }
+
 /*
     public function index_delete(){
         $no_info = $this->delete('no_info');
