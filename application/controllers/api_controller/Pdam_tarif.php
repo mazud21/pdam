@@ -10,11 +10,11 @@ class Pdam_tarif extends REST_Controller{
 
     public function __construct(){
         parent::__construct();
-        $this->load->model('Tarif_model');
+        $this->load->model('api_model/Tarif_model_api');
     }
     
     public function index_get(){
-        $tarif = $this->Tarif_model->getTarif();
+        $tarif = $this->Tarif_model_api->getTarif();
         
         if($tarif){
             $this->response([

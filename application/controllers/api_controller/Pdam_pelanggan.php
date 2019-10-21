@@ -10,7 +10,7 @@ class Pdam_pelanggan extends REST_Controller{
 
     public function __construct(){
         parent::__construct();
-        $this->load->model('Pelanggan_model_api');
+        $this->load->model('api_model/Pelanggan_model_api');
     }
     
     public function index_get(){
@@ -60,6 +60,7 @@ class Pdam_pelanggan extends REST_Controller{
         }
     }
 
+    /*
     public function index_post(){
         $data_pell = [
             'no_daftar' => $this->post('no_daftar'),
@@ -75,6 +76,25 @@ class Pdam_pelanggan extends REST_Controller{
         ];
 
         if ($this->Pelanggan_model_api->createPelanggan($data_pell) > 0) {
+            $this->response([
+                'status' => true,
+                'message' => 'Data pelanggan Berhasil ditambahkan'
+            ], REST_Controller::HTTP_CREATED);
+        } else {
+            $this->response([
+                'status' => false,
+                'data' => 'Gagal menambahkan data pelanggan'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
+    }
+    */
+
+    //coba upload_image
+    public function index_post(){
+        $this->load->model('Pelanggan_model_api');
+        $upload = $this->Pelanggan_model_api->upload();
+
+        if ($this->Pelanggan_model_api->createPelanggan($upload) > 0) {
             $this->response([
                 'status' => true,
                 'message' => 'Data pelanggan Berhasil ditambahkan'

@@ -10,7 +10,7 @@ class Pdam_tagihan extends REST_Controller{
 
     public function __construct(){
         parent::__construct();
-        $this->load->model('Tagihan_model_api');
+        $this->load->model('api_model/Tagihan_model_api');
     }
     
     public function index_get(){

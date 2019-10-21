@@ -10,7 +10,7 @@ class Pdam_masalah extends REST_Controller{
 
     public function __construct(){
         parent::__construct();
-        $this->load->model('Masalah_model_api');
+        $this->load->model('api_model/Masalah_model_api');
     }
     
     public function index_get(){

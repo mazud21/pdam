@@ -1,5 +1,5 @@
 <?php
-class Masalah_model extends CI_Model{
+class Masalah_model_api extends CI_Model{
     
     public function getMasalah(){
         return $this->db->get('masalah_air')->result_array();

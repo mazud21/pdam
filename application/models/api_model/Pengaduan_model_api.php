@@ -1,6 +1,6 @@
 <?php
 
-class Pengaduan_model extends CI_Model{
+class Pengaduan_model_api extends CI_Model{
     
     public function getAduan(){
         return $this->db->get('pengaduan')->result_array();
