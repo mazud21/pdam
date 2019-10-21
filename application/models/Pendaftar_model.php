@@ -37,7 +37,6 @@ class Pendaftar_model extends CI_model {
                 return $return;
         }
     }
-
     
     public function tambahDataPendaftar($upload)
     {
@@ -52,6 +51,20 @@ class Pendaftar_model extends CI_model {
         ];
 
         $this->db->insert('pelanggan', $data);
+    }
+
+    public function hapusDataPendaftar($no_daftar)
+    {
+        // $this->db->where('id', $id);
+        $this->db->delete('pelanggan', ['no_daftar' => $no_daftar]);
+    }
+
+    public function cariDataPendaftar()
+    {
+        $keyword = $this->input->post('keyword', true);
+        $this->db->like('no_daftar', $keyword);
+        $this->db->like('nama', $keyword);
+        return $this->db->get('pelanggan')->result_array();
     }
 
     public function getRandomPass(){
@@ -98,17 +111,5 @@ class Pendaftar_model extends CI_model {
         
     }
 
-    public function hapusDataPendaftar($no_daftar)
-    {
-        // $this->db->where('id', $id);
-        $this->db->delete('pelanggan', ['no_daftar' => $no_daftar]);
-    }
-
-    public function cariDataPendaftar()
-    {
-        $keyword = $this->input->post('keyword', true);
-        $this->db->like('no_daftar', $keyword);
-        $this->db->like('nama', $keyword);
-        return $this->db->get('pelanggan')->result_array();
-    }
+    
 }
