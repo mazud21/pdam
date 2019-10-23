@@ -7,6 +7,8 @@ class Masalah extends CI_Controller
         parent::__construct();
         $this->load->model('Masalah_model');
         $this->load->library('form_validation');
+        if( ! $this->session->userdata('authenticated')) 
+            redirect('authentication');
     }
 
     public function index()

@@ -7,6 +7,8 @@ class Pendaftar extends CI_Controller
         parent::__construct();
         $this->load->model('Pendaftar_model');
         $this->load->library('form_validation');
+        if( ! $this->session->userdata('authenticated')) // Jika tidak ada
+            redirect('authentication');
         
     }
 

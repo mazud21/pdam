@@ -37,6 +37,8 @@
           <a class="nav-item nav-link" href="<?= base_url(); ?>pengaduan">Pengaduan</a>
           <a class="nav-item nav-link" href="<?= base_url(); ?>masalah">Masalah Air</a>
           <a class="nav-item nav-link" href="#">About</a>
+          <a class="nav-item nav-link" href="index.php/authentication/logout">Logout</a>
+          <!--a href="<?php echo base_url('index.php/authentication/logout') ?>">Logout</a-->
         </div>
       </div>
     </div>

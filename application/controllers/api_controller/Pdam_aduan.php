@@ -10,11 +10,11 @@ class Pdam_aduan extends REST_Controller{
 
     public function __construct(){
         parent::__construct();
-        $this->load->model('Pengaduan_model');
+        $this->load->model('api_model/Pengaduan_model_api');
     }
     
     public function index_get(){
-        $aduan = $this->Pengaduan_model->getAduan();
+        $aduan = $this->Pengaduan_model_api->getAduan();
         
         if($aduan){
             $this->response([

@@ -9,6 +9,8 @@ class Tagihan extends CI_Controller
         $this->load->model('Tagihan_model');
         $this->load->model('Pelanggan_model');
         $this->load->library('form_validation');
+        if( ! $this->session->userdata('authenticated')) 
+            redirect('authentication');
     }
 
     public function index()

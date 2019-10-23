@@ -7,6 +7,8 @@ class Pelanggan extends CI_Controller
         parent::__construct();
         $this->load->model('Pelanggan_model');
         $this->load->library('form_validation');
+        if( ! $this->session->userdata('authenticated')) // Jika tidak ada
+            redirect('authentication');
     }
 
     public function index()
