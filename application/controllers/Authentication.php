@@ -11,7 +11,7 @@ class Authentication extends CI_Controller {
         if($this->session->userdata('authenticated')) 
         redirect('home'); 
         $this->load->view('templates/header_login');
-        $this->load->view('Authentication/login'); 
+        $this->load->view('authentication/login'); 
         $this->load->view('templates/footer');
     }
     
@@ -21,7 +21,7 @@ class Authentication extends CI_Controller {
         $admin = $this->Admin_model->get($nip); 
         if(empty($admin)){ 
         $this->session->set_flashdata('message', 'nip tidak ditemukan'); 
-        redirect('Authentication'); 
+        redirect('authentication'); 
         } else {
                 if($password == $admin->password){
                     $session = array(
@@ -33,13 +33,13 @@ class Authentication extends CI_Controller {
                     redirect('home'); 
                 } else {
                         $this->session->set_flashdata('message', 'Password salah'); 
-                        redirect('Authentication'); 
+                        redirect('authentication'); 
                 }
             }
     }
 
     public function logout(){
         $this->session->sess_destroy(); 
-        redirect('Authentication'); 
+        redirect('authentication'); 
     }
 }
