@@ -11,13 +11,6 @@ class Pelanggan_model_api extends CI_Model{
         }            
     }
     
-    /*
-    public function createPelanggan($data_pell){
-        $this->db->insert('pelanggan', $data_pell);
-        return $this->db->affected_rows();
-    }
-    */
-
     public function upload(){
         $config['upload_path']='./images/';
         $config['allowed_types']='jpg|png|jpeg';
@@ -43,7 +36,7 @@ class Pelanggan_model_api extends CI_Model{
         }
     }
 
-    //coba upload
+    //can upload but still wrong in condition(if)
     public function createPelanggan($upload){
 
         $data_pell = [

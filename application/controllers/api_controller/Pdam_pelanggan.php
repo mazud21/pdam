@@ -60,36 +60,7 @@ class Pdam_pelanggan extends REST_Controller{
         }
     }
 
-    /*
-    public function index_post(){
-        $data_pell = [
-            'no_daftar' => $this->post('no_daftar'),
-            'no_ktp' => $this->post('no_ktp'),
-            'nama' => $this->post('nama'),
-            'alamat' => $this->post('alamat'),
-            'email' => $this->post('email'),
-            'no_hp' => $this->post('no_hp'),
-            'foto_ktp' => $this->post('foto_ktp'),
-            'pilih_tarif' => $this->post('pilih_tarif'),
-            'no_pelanggan' => $this->post('no_pelanggan'),
-            'password' => $this->post('password')
-        ];
-
-        if ($this->Pelanggan_model_api->createPelanggan($data_pell) > 0) {
-            $this->response([
-                'status' => true,
-                'message' => 'Data pelanggan Berhasil ditambahkan'
-            ], REST_Controller::HTTP_CREATED);
-        } else {
-            $this->response([
-                'status' => false,
-                'data' => 'Gagal menambahkan data pelanggan'
-            ], REST_Controller::HTTP_BAD_REQUEST);
-        }
-    }
-    */
-
-    //coba upload_image
+    //can upload but still wrong in condition(if)
     public function index_post(){
         $this->load->model('Pelanggan_model_api');
         $upload = $this->Pelanggan_model_api->upload();
