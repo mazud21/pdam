@@ -91,9 +91,23 @@
                             <small class="form-text text-danger"><?= form_error('std_akhir'); ?></small>
                         </div>
 
+<?php
+$denda = 5000;
+
+$tgl = date('Y-m-d');
+$tglBayar = substr($tgl, 8, 2);
+
+//cek tanggal bayar untuk menentukan denda
+if ($tglBayar > 20) {
+    $d = $denda;
+} else {
+    $d = 0;
+}
+?>
+
                         <div class="form-group">
                             <label for="denda">Denda</label>
-                            <input type="text" name="denda" class="form-control" id="denda" placeholder="0" onchange="sum();">
+                            <input type="text" name="denda" class="form-control" id="denda" placeholder="0" value=<?= $d; ?> onchange="sum();" readonly>
                             <small class="form-text text-danger"><?= form_error('denda'); ?></small>
                         </div>
                         
