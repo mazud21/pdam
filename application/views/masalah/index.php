@@ -1,16 +1,6 @@
 <div class="container">
     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
     <?php if ($this->session->flashdata('flash')) : ?>
-    <!-- <div class="row mt-3">
-        <div class="col-md-6">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                Data masalah_air <strong>berhasil</strong> <?= $this->session->flashdata('flash'); ?>.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-    </div> -->
     <?php endif; ?>
 
     <div class="row mt-3">
@@ -41,19 +31,34 @@
                 data masalah air tidak ditemukan.
                 </div>
             <?php endif; ?>
-            <ul class="list-group">
-                <?php foreach ($masalah_air as $mas) : ?>
-                <li class="list-group-item">
-                    <?= $mas['wilayah']; ?>
-                    <a href="<?= base_url(); ?>masalah/hapus/<?= $mas['no_info']; ?>"
+            
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-bordered table-striped mb-0" id="dtVerticalScrollExample">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nomor Tagihan</th>
+                        <th scope="col">Nama Pelanggan</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($masalah_air as $mas) : ?>
+                    <tr>
+                        <td><?= $mas['no_info']; ?></td>
+                        <td><?= $mas['wilayah']; ?></td>
+                        <td><a href="<?= base_url(); ?>masalah/hapus/<?= $mas['no_info']; ?>"
                         class="badge badge-danger float-right tombol-haapus">hapus</a>
                     <a href="<?= base_url(); ?>masalah/ubah/<?= $mas['no_info']; ?>"
                         class="badge badge-success float-right">ubah</a>
                     <a href="<?= base_url(); ?>masalah/detail/<?= $mas['no_info']; ?>"
                         class="badge badge-primary float-right">detail</a>
-                </li>
-                <?php endforeach; ?>
-            </ul>
+                    </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                    
+                </table>
+                </div>
+            </div>
         </div>
     </div>
 

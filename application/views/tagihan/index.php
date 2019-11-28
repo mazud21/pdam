@@ -1,16 +1,6 @@
 <div class="container">
     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
     <?php if ($this->session->flashdata('flash')) : ?>
-    <!-- <div class="row mt-3">
-        <div class="col-md-6">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                Data tagihan <strong>berhasil</strong> <?= $this->session->flashdata('flash'); ?>.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-    </div> -->
     <?php endif; ?>
 
     <div class="row mt-3">
@@ -41,21 +31,34 @@
                 data tagihan tidak ditemukan.
                 </div>
             <?php endif; ?>
-            <ul class="list-group">
-                <?php foreach ($tagihan_air as $tag) { ?>
-                <li class="list-group-item">
-                    <?= $tag['no_pelanggan']; ?>
-                    <?= $tag['nama']; ?>
+            
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-bordered table-striped mb-0" id="dtVerticalScrollExample">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nomor Tagihan</th>
+                        <th scope="col">Nama Pelanggan</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($tagihan_air as $tag) : ?>
+                    <tr>
+                        <td><?= $tag['no_tagihan']; ?></td>
+                        <td><?= $tag['nama']; ?></td>
+                        <td><a href="<?= base_url(); ?>tagihan/hapus/<?= $tag['no_tagihan']; ?>"
+                                class="badge badge-danger float-right tombol-hapus">hapus</a>
+                            <a href="<?= base_url(); ?>tagihan/ubah/<?= $tag['no_tagihan']; ?>"
+                                class="badge badge-success float-right">ubah</a>
+                            <a href="<?= base_url(); ?>tagihan/detail/<?= $tag['no_tagihan']; ?>"
+                                class="badge badge-primary float-right">detail</a>
+                    </tr>
+                    <?php endforeach; ?>
+                    </tbody>
                     
-                    <a href="<?= base_url(); ?>tagihan/hapus/<?= $tag['no_tagihan']; ?>"
-                        class="badge badge-danger float-right tombol-hapus">hapus</a>
-                    <a href="<?= base_url(); ?>tagihan/ubah/<?= $tag['no_tagihan']; ?>"
-                        class="badge badge-success float-right">ubah</a>
-                    <a href="<?= base_url(); ?>tagihan/detail/<?= $tag['no_tagihan']; ?>"
-                        class="badge badge-primary float-right">detail</a>
-                </li>
-                <?php } ?>
-            </ul>
+                </table>
+                </div>
+            </div>
         </div>
     </div>
 

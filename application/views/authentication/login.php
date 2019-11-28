@@ -22,11 +22,11 @@
           <div class="col-md-5 col-centered">
             <div class="">
               <div class="card">
-                  <div class="card-header">
-                    <h3 class="text-center">LOGIN</h3>
+                  <div class="card-header" style="background-color: #4d80e4;">
+                    <h3 class="text-center" style="color: #ffffff;">LOGIN</h3>
                   </div>
                     <div class="card-body">
-                    <div style="color: red;margin-bottom: 15px;">
+                    <div style="color: #4d80e4; margin-bottom: 15px;">
                     <form method="post" action="<?php echo base_url('index.php/authentication/login') ?>">
                       <div class="form-group">
                         <label for="nip">NIP</label>

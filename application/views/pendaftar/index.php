@@ -41,20 +41,34 @@
                 data pendaftar tidak ditemukan.
                 </div>
             <?php endif; ?>
-            <ul class="list-group">
-                <?php foreach ($pelanggan as $pell) : ?>
-                <li class="list-group-item">
-                    <?= $pell['no_daftar']; ?>
-                    <?= $pell['nama']; ?>
-                    <a href="<?= base_url(); ?>pendaftar/hapus/<?= $pell['no_daftar']; ?>"
+
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+  <table class="table table-bordered table-striped mb-0" id="dtVerticalScrollExample">
+    <thead>
+      <tr>
+        <th scope="col">Nomor Daftar</th>
+        <th scope="col">Nama Pelanggan</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($pelanggan as $pell) : ?>
+      <tr>
+        <td><?= $pell['no_daftar']; ?></td>
+        <td><?= $pell['nama']; ?></td>
+        <td><a href="<?= base_url(); ?>pendaftar/hapus/<?= $pell['no_daftar']; ?>"
                         class="badge badge-danger float-right tombol-hapus">hapus</a>
                     <a href="<?= base_url(); ?>pendaftar/validasi/<?= $pell['no_daftar']; ?>"
                         class="badge badge-success float-right">validasi</a>
                     <a href="<?= base_url(); ?>pendaftar/detail/<?= $pell['no_daftar']; ?>"
                         class="badge badge-primary float-right">detail</a>
-                </li>
-                <?php endforeach; ?>
-            </ul>
+      </tr>
+      <?php endforeach; ?>
+    </tbody>
+    
+  </table>
+  
+</div>
         </div>
     </div>
 

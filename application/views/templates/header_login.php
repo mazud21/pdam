@@ -19,7 +19,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #4d80e4;">
     <div class="container">
       <a class="navbar-brand" href="#">PDAM ADMIN</a>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">

@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+
+<html>
+ <head>
+
+  <!-- My CSS -->
+  <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/css/style.css">
    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -9,7 +16,26 @@
     <script>
     var baseurl = "<?php echo base_url("index.php/"); ?>"; // Buat variabel baseurl untuk nanti di akses pada file config.js
     </script>
+    
     <script src="<?php echo base_url("js/jquery.min.js"); ?>"></script> <!-- Load library jquery -->
     <script src="<?php echo base_url("js/config.js"); ?>"></script> <!-- Load file process.js -->
-  </body>
+ </head>
+
+<body>
+ 
+<!-- Footer -->
+<footer class="page-footer font-small blue mt-4">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3" style="color: #ffffff; background-color: #4c7ce3;">© 2019 Copyright:
+    <a href="#" style="color: #ffffff;"> hmazud@gmail.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</body>
+
 </html>
+
+
