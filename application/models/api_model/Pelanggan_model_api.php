@@ -11,6 +11,7 @@ class Pelanggan_model_api extends CI_Model{
         }            
     }
     
+    //register start
     public function upload(){
         $config['upload_path']='./images/';
         $config['allowed_types']='jpg|png|jpeg';
@@ -51,6 +52,7 @@ class Pelanggan_model_api extends CI_Model{
 
         $this->db->insert('pelanggan', $data_pell);
     }
+    //register end
 
     public function updatePelanggan($data_pell, $no_daftar){
         $this->db->update('pelanggan', $data_pell, ['no_daftar' => $no_daftar]);
@@ -60,5 +62,19 @@ class Pelanggan_model_api extends CI_Model{
     public function deletePelanggan($no_pelanggan){
         $this->db->delete('pelanggan', ['no_pelanggan' => $no_pelanggan]);
         return $this->db->affected_rows();
+    }
+
+    protected $user_table = 'pelanggan';
+
+    public function login($no_pelanggan, $password)
+    {
+        $this->db->where('no_pelanggan', $no_pelanggan);
+        $this->db->where('password', $password);
+        $result = $this->db->get($this->user_table)->row();
+        if($result){
+            return $result;
+     	}else{
+     		return 0;
+     	}
     }
 }
