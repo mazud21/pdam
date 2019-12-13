@@ -8,10 +8,11 @@ class Authentication extends CI_Controller {
     }
 
     public function index(){
+        $data['judul'] = 'Login Admin';
         if($this->session->userdata('authenticated')) 
         redirect('home'); 
-        $this->load->view('templates/header_login');
-        $this->load->view('authentication/login'); 
+        $this->load->view('templates/header_login', $data);
+        $this->load->view('authentication/login', $data); 
         $this->load->view('templates/footer');
     }
     

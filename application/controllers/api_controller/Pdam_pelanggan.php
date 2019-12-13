@@ -73,7 +73,7 @@ class Pdam_pelanggan extends REST_Controller{
         } else {
             $this->response([
                 'status' => false,
-                'data' => 'Gagal menambahkan data pelanggan'
+                'message' => 'Gagal menambahkan data pelanggan'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
     }

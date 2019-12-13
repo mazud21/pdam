@@ -14,14 +14,14 @@
   <!-- My CSS -->
   <link rel="stylesheet" href="<?= base_url(); ?>assets/css/style.css">
   
-  <title>LOGIN ADMIN</title>
+  <title><?php echo $judul; ?></title>
 </head>
 
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #4d80e4;">
     <div class="container">
-      <a class="navbar-brand" href="#">PDAM ADMIN</a>
+      <a class="navbar-brand" href="#" style="color: #ffffff;">PDAM ADMIN</a>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           
