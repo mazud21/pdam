@@ -73,7 +73,14 @@
                     <div class="form-group">
                             <label for="status_bayar">Status Bayar</label>
                             <h6 class="card-subtitle mb-2 text-muted">
-                            <?= $tagihan_air['status_bayar']; ?></h6>
+                            <?php $tagihan_air['status_bayar'];
+                                if ($tagihan_air['status_bayar'] == 0) {
+                                        echo "Sudah Bayar";
+                                } else {
+                                        echo "Belum Bayar";
+                                }
+                                
+                            ?></h6>
                     </div>
 
                     <div class="form-group">
