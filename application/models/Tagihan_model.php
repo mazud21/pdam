@@ -10,6 +10,12 @@ class Tagihan_model extends CI_model {
         $this->db->join('tagihan_air','tagihan_air.no_daftar=pelanggan.no_daftar');
         $query = $this->db->get();
         return $query->result_array();
+
+        //Untuk menampilkan yang sudah bayar
+        //$this->db->where('status_bayar = 0');
+        //Untuk menampilkan yang belum bayar
+        //$this->db->where('status_bayar = 1');
+
     }
 
     public function getTagihanById($no_tagihan)

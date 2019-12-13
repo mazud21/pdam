@@ -86,8 +86,8 @@
                         
                         <div class="form-group">
                         <label for="status_bayar">Status Bayar</label><p>
-                            <input type="radio" name="status_bayar" value="belum" checked<?PHP if(!empty($status_bayar) && $status_bayar == "belum") echo 'checked'; ?> /> Belum Bayar
-                            <input type="radio" name="status_bayar" value="sudah" <?PHP if(!empty($status_bayar) && $status_bayar == "sudah") echo 'checked'; ?> /> Sudah Bayar
+                            <input type="radio" name="status_bayar" value="1" checked/> Belum Bayar
+                            <input type="radio" name="status_bayar" value="0" /> Sudah Bayar
                             <small class="form-text text-danger"><?= form_error('status_bayar'); ?></small>
                         </div>
              

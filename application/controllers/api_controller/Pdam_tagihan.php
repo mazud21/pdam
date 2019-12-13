@@ -16,12 +16,12 @@ class Pdam_tagihan extends REST_Controller{
     public function index_get(){
         //$tagihan = $this->Tagihan_model_api->getTagihan($no_tagihan);
         
-        $no_daftar = $this->get('no_daftar');
+        $no_pelanggan = $this->get('no_pelanggan');
 
-        if ($no_daftar === null) {
+        if ($no_pelanggan === null) {
             $tagihan = $this->Tagihan_model_api->getTagihan();
         } else {
-            $tagihan = $this->Tagihan_model_api->getTagihan($no_daftar);
+            $tagihan = $this->Tagihan_model_api->getTagihan($no_pelanggan);
         }
 
         if($tagihan){
