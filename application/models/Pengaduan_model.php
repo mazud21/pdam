@@ -6,7 +6,7 @@ class Pengaduan_model extends CI_model {
         //return $this->db->get('pengaduan')->result_array();
         $this->db->select('*');
         $this->db->from('pelanggan');
-        $this->db->join('pengaduan','pengaduan.no_daftar=pelanggan.no_daftar');
+        $this->db->join('pengaduan','pengaduan.no_pelanggan=pelanggan.no_pelanggan');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -38,7 +38,7 @@ class Pengaduan_model extends CI_model {
     {
         $this->db->select('*');
         $this->db->from('pelanggan');
-        $this->db->join('pengaduan', 'pengaduan.no_daftar=pelanggan.no_daftar');
+        $this->db->join('pengaduan', 'pengaduan.no_pelanggan=pelanggan.no_pelanggan');
         $this->db->where('id_pengaduan',$id_pengaduan);
         $query = $this->db->get();
         return $query->row_array();
