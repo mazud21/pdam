@@ -4,9 +4,9 @@ class Pengaduan_model extends CI_model {
     public function getAllPengaduan()
     {
         //return $this->db->get('pengaduan')->result_array();
-        $this->db->select('*');
-        $this->db->from('pelanggan');
-        $this->db->join('pengaduan','pengaduan.no_pelanggan=pelanggan.no_pelanggan');
+        $this->db->select('p.no_pelanggan, p.nama, p.alamat, p.no_hp, pe.keluhan, pe.tanggapan');
+        $this->db->from('pelanggan p');
+        $this->db->join('pengaduan pe','pe.no_pelanggan= p.no_pelanggan');
         $query = $this->db->get();
         return $query->result_array();
     }
