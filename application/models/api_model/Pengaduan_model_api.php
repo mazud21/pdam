@@ -4,7 +4,7 @@ class Pengaduan_model_api extends CI_Model{
     
     public function getAduan(){
         //return $this->db->get('pengaduan')->result_array();
-        $this->db->select('p.no_pelanggan, p.nama, p.alamat, p.no_hp, pe.keluhan, pe.tanggapan');
+        $this->db->select('p.no_pelanggan, p.nama, p.alamat, p.no_hp, pe.id_pengaduan, pe.keluhan, pe.tanggapan');
         $this->db->from('pelanggan p');
         $this->db->join('pengaduan pe','pe.no_pelanggan= p.no_pelanggan');
         $query = $this->db->get();
