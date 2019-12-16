@@ -40,6 +40,7 @@ class Pengaduan_model extends CI_model {
         $this->db->from('pelanggan');
         $this->db->join('pengaduan', 'pengaduan.no_pelanggan=pelanggan.no_pelanggan');
         $this->db->where('id_pengaduan',$id_pengaduan);
+        $this->db->order_by('id_pengaduan','desc');
         $query = $this->db->get();
         return $query->row_array();
     }
