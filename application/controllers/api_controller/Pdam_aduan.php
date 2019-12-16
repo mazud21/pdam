@@ -50,12 +50,12 @@ class Pdam_aduan extends REST_Controller{
 
     public function index_post(){
         $data_pengaduan = [
-            'id_pengaduan' => $this->post('id_pengaduan'),
+            'no_pelanggan' => $this->post('no_pelanggan'),
             'keluhan' => $this->post('keluhan'),
-            'tanggapan' => $this->post('tanggapan')
+            //'tanggapan' => $this->post('tanggapan')
         ];
 
-        if ($this->Pengaduan_model->createPengaduan($data_pengaduan) > 0) {
+        if ($this->Pengaduan_model_api->createPengaduan($data_pengaduan) > 0) {
             $this->response([
                 'status' => true,
                 'message' => 'Info pengaduan Berhasil ditambahkan'
