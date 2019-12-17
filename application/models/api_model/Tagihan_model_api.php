@@ -14,28 +14,12 @@ class Tagihan_model_api extends CI_Model{
             //return $this->db->get('pelanggan')->result_array();
         } else {
             $this->db->select('*');
-            $this->db->from('pelanggan');
-            $this->db->join('tagihan_air', 'tagihan_air.no_pelanggan=pelanggan.no_pelanggan');
-            $this->db->get_where('tagihan_air', ['no_pelanggan',$no_pelanggan]);
+            $this->db->from('pelanggan p');
+            $this->db->where('p.no_pelanggan',$no_pelanggan);
+            $this->db->join('tagihan_air t','p.no_pelanggan = t.no_pelanggan');
             $query = $this->db->get();
-            return $query->row_array();
-            //return $this->db->get_where('tagihan_air', ['no_daftar' => $no_daftar])->result_array();
+            return $query->result_array();
+            //return $this->db->get_where('tagihan_air', ['no_pelanggan' => $no_pelanggan])->result_array();
         }
     }
-/*
-    public function deleteTagihan($no_tagihan){
-        $this->db->delete('tagihan_air', ['no_tagihan' => $no_tagihan]);
-        return $this->db->affected_rows();
-    }
-
-    public function createTagihan($data_tagihan){
-        $this->db->insert('tagihan_air', $data_tagihan);
-        return $this->db->affected_rows();
-    }
-
-    public function updateTagihan($data_tagihan, $no_tagihan){
-        $this->db->update('tagihan_air', $data_tagihan, ['no_tagihan' => $no_tagihan]);
-        return $this->db->affected_rows();
-    }
-*/
 }
