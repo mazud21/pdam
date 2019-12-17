@@ -14,13 +14,26 @@ class Pdam_aduan extends REST_Controller{
     }
     
     public function index_get(){
-        $aduan = $this->Pengaduan_model_api->getAduan();
-        
+        //$aduan = $this->Pengaduan_model_api->getAduan();
+
+        $no_pelanggan = $this->get('no_pelanggan');
+
+        if ($no_pelanggan === null) {
+            $aduan = $this->Pengaduan_model_api->getAduan();
+        } else {
+            $aduan = $this->Pengaduan_model_api->getAduan($no_pelanggan);
+        }
+
         if($aduan){
             $this->response([
                 'status' => true,
                 'data' => $aduan
             ], REST_Controller::HTTP_OK);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'Data tidak ditemukan !'
+            ], REST_Controller::HTTP_NOT_FOUND);
         }
     }
 
