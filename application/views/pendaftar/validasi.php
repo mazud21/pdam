@@ -85,6 +85,12 @@
                                         <label for="pilih_tarif">Pilihan Tarif</label>
                                         <input type="text" name="pilih_tarif" class="form-control" id="pilih_tarif" value="<?= $pelanggan['pilih_tarif']; ?>"readonly>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="regId">Pilihan Tarif</label>
+                                        <input type="text" name="regId" class="form-control" id="regId" value="<?= $pelanggan['regId']; ?>"readonly>
+                                    </div>
+
                                     <button type="submit" name="validasi" id="validasi" class="btn btn-primary float-right">Validasi Pendaftar</button>
                                     <a href="<?= base_url(); ?>pendaftar" class="btn btn-primary float-right mx-2" >Kembali</a>
                                 </form>

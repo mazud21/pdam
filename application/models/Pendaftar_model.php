@@ -103,7 +103,8 @@ class Pendaftar_model extends CI_model {
                 "email" => $this->input->post('email', true),
                 "no_hp" => $this->input->post('no_hp', true),
                 //"foto_ktp" => $upload['file']['file_name'],
-                "pilih_tarif" => $this->input->post('pilih_tarif', true)
+                "pilih_tarif" => $this->input->post('pilih_tarif', true),
+                "regId" => $this->input->post('regId', true)
             ];
 
         $this->db->where('no_daftar', $this->input->post('no_daftar'));
