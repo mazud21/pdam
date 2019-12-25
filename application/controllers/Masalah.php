@@ -41,9 +41,11 @@ class Masalah extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->Masalah_model->tambahDataMasalah();
+            $this->sendNotifMasalah();
             $this->session->set_flashdata('flash', 'Ditambahkan');
             redirect('masalah');
         }
+
     }
 
     public function hapus($no_info)
@@ -87,4 +89,48 @@ class Masalah extends CI_Controller
         }
     }
 
+    public function sendNotifMasalah()
+    {
+        $wilayah = $this->input->post('wilayah');
+
+        // API access key from Google API's Console
+        define('API_ACCESS_KEY', 'AIzaSyAuS070ZBgLi6hEOs6v7vFmzMAh7csl-nQ');
+        // prep the bundle
+
+            $msg = array(
+            'title' => 'Info Masalah Air',
+            'body' => $wilayah,
+            'clickAction' => 'android.intent.action.TARGET_NOTIFICATION',
+            'priority' => 'high',
+            'sound' => 'default',
+            'time_to_live' => 3600
+            );
+
+        $fields = array
+        (
+            'to' => '/topics/infomasalah', 
+            'data' => $msg
+        );
+
+        $headers = array
+        (
+            'Authorization: key=' . API_ACCESS_KEY,
+            'Content-Type: application/json'
+        );
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+
+            $result = curl_exec($ch);
+            curl_close($ch);
+
+            echo $result;
+	        var_dump($fields);
+    }
 }
