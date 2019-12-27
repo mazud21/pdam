@@ -11,7 +11,9 @@
                     <form action="" method="post">
                         <input type="hidden" id="id_pengaduan" name="id_pengaduan" value="<?= $pengaduan['id_pengaduan']; ?>" readonly>
                         <input type="hidden" id="no_daftar" name="no_daftar" value="<?= $pengaduan['no_daftar']; ?>" readonly>
-                        
+
+                        <input type="hidden" id="regId" name="regId" value="<?= $pengaduan['regId']; ?>" readonly>
+
                         <div class="form-group">
                             <label for="no_pelanggan">No Pelangan</label>
                             <input type="text" name="no_pelanggan" class="form-control" id="no_pelanggan" value="<?= $pengaduan['no_pelanggan']; ?>" readonly>
@@ -28,6 +30,12 @@
                             <label for="alamat">Alamat Pelanggan</label>
                             <input type="text" name="alamat" class="form-control" id="alamat" value="<?= $pengaduan['alamat']; ?>" readonly>
                             <small class="form-text text-danger"><?= form_error('alamat'); ?></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alamat">Nomor Telepon Pelanggan</label>
+                            <input type="text" name="no_hp" class="form-control" id="no_hp" value="<?= $pengaduan['no_hp']; ?>" readonly>
+                            <small class="form-text text-danger"><?= form_error('no_hp'); ?></small>
                         </div>
                         
                         <div class="form-group">

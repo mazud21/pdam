@@ -76,9 +76,55 @@ class Pengaduan extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->Pengaduan_model->ubahDataPengaduan();
+            $this->sendNotifPengaduan();
             $this->session->set_flashdata('flash', 'Diubah');
             redirect('pengaduan');
         }
     }
 
+    public function sendNotifPengaduan()
+    {
+        $regId = $this->input->post('regId');
+        $tanggapan = $this->input->post('tanggapan');
+
+        // API access key from Google API's Console
+        define( 'API_ACCESS_KEY', 'AIzaSyAuS070ZBgLi6hEOs6v7vFmzMAh7csl-nQ' );
+        
+        // prep the bundle
+            $msg = array(
+            'title' => 'Info Masalah Air',
+            'body' => $tanggapan,
+            'clickAction' => 'android.intent.action.TARGET_PENGADUAN',
+            'priority' => 'high',
+            'sound' => 'default',
+            'time_to_live' => 3600
+            );
+
+        $fields = array
+        (
+            'registration_ids' 	=> array($regId),
+            'data' => $msg
+        );
+
+        $headers = array
+        (
+            'Authorization: key=' . API_ACCESS_KEY,
+            'Content-Type: application/json'
+        );
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+
+            $result = curl_exec($ch);
+            curl_close($ch);
+
+            echo $result;
+	        var_dump($fields);
+    }
 }
