@@ -18,6 +18,7 @@ class Tagihan_model_api extends CI_Model{
             $this->db->from('pelanggan p');
             $this->db->where('p.no_pelanggan',$no_pelanggan);
             $this->db->join('tagihan_air t','p.no_pelanggan = t.no_pelanggan');
+            $this->db->order_by('no_tagihan','DESC');
             $query = $this->db->get();
             return $query->result_array();
             //return $this->db->get_where('tagihan_air', ['no_pelanggan' => $no_pelanggan])->result_array();
