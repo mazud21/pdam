@@ -8,6 +8,7 @@ class Tagihan_model extends CI_model {
         $this->db->select('*');
         $this->db->from('pelanggan');
         $this->db->join('tagihan_air','tagihan_air.no_pelanggan=pelanggan.no_pelanggan');
+        $this->db->order_by('no_tagihan','DESC');
         $query = $this->db->get();
         return $query->result_array();
 
