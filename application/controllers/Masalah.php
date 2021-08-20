@@ -31,21 +31,23 @@ class Masalah extends CI_Controller
         $this->form_validation->set_rules('hari', 'Hari', 'required');
         $this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
         $this->form_validation->set_rules('estimasi', 'Estimasi', 'required');
+        $this->form_validation->set_rules('est_mulai', 'Waktu Mulai', 'required');
+        $this->form_validation->set_rules('est_selesai', 'Waktu Selesai', 'required');
         $this->form_validation->set_rules('kerusakan', 'Kerusakan', 'required');
         $this->form_validation->set_rules('alternatif', 'Alternatif', 'required');
         $this->form_validation->set_rules('penanganan', 'Penanganan', 'required');
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
+            $this->load->view('templates/header_masalah', $data);
             $this->load->view('masalah/tambah');
-            $this->load->view('templates/footer');
+            $this->load->view('templates/footer_masalah');
         } else {
             $this->Masalah_model->tambahDataMasalah();
+            $this->sendNotifMemo();
             $this->sendNotifMasalah();
             $this->session->set_flashdata('flash', 'Ditambahkan');
             redirect('masalah');
         }
-
     }
 
     public function hapus($no_info)
@@ -74,15 +76,18 @@ class Masalah extends CI_Controller
         $this->form_validation->set_rules('hari', 'Hari', 'required');
         $this->form_validation->set_rules('tanggal', 'tanggal', 'required');
         $this->form_validation->set_rules('estimasi', 'estimasi', 'required');
+        $this->form_validation->set_rules('est_mulai', 'Waktu Mulai', 'required');
+        $this->form_validation->set_rules('est_selesai', 'Waktu Selesai', 'required');
         $this->form_validation->set_rules('kerusakan', 'kerusakan', 'required');
         $this->form_validation->set_rules('alternatif', 'Alternatif', 'required');
         $this->form_validation->set_rules('penanganan', 'Penanganan', 'required');
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
+            $this->load->view('templates/header_masalah', $data);
             $this->load->view('masalah/ubah', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/footer_masalah');
         } else {
+            $this->sendNotifMemo();
             $this->Masalah_model->ubahDataMasalah();
             $this->session->set_flashdata('flash', 'Diubah');
             redirect('masalah');
@@ -115,6 +120,51 @@ class Masalah extends CI_Controller
         $headers = array
         (
             'Authorization: key=' . API_ACCESS_KEY,
+            'Content-Type: application/json'
+        );
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+
+            $result = curl_exec($ch);
+            curl_close($ch);
+
+            echo $result;
+	        var_dump($fields);
+    }
+    
+    //push notif FCM
+    public function sendNotifMemo()
+    {
+        $wilayah = $this->input->post('wilayah');
+        $kerusakan = $this->input->post('kerusakan');
+        
+        // API access key from Google API's Console
+        define('API_ACCESS_KEY', 'AAAACyyRMqo:APA91bH-R5RUiRDwlYKDfEjszNLmJwaq0l67CO_aQoOAZQv3i-VBfuYl8YgpFCvsDYJPj5k7lhVe4XvxHv2aHCAbSLywSybhV0KPZrj0obO_nBkHq4CQTFfjmF0e9KVqh4nYH_gCPwzv');
+        // prep the bundle
+
+            $msg = array(
+            'title' => $wilayah,
+            'body' => $kerusakan,
+            'click_action'=> "FLUTTER_NOTIFICATION_CLICK",
+            'screen'=> "memo",//or secondScreen or thirdScreen
+            );
+
+        $fields = array
+        (
+            'to' => '/topics/memo',
+            'notification' => $msg
+        );
+
+        $headers = array
+        (
+            'Authorization: key='.API_ACCESS_KEY,
             'Content-Type: application/json'
         );
 
