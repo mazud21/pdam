@@ -145,21 +145,30 @@ class Masalah extends CI_Controller
         $wilayah = $this->input->post('wilayah');
         $kerusakan = $this->input->post('kerusakan');
         
-        // API access key from Google API's Console
+        // API access key from Google API's Console => Cloud Messaging
         define('API_ACCESS_KEY', 'AAAACyyRMqo:APA91bH-R5RUiRDwlYKDfEjszNLmJwaq0l67CO_aQoOAZQv3i-VBfuYl8YgpFCvsDYJPj5k7lhVe4XvxHv2aHCAbSLywSybhV0KPZrj0obO_nBkHq4CQTFfjmF0e9KVqh4nYH_gCPwzv');
+        
         // prep the bundle
 
             $msg = array(
             'title' => $wilayah,
-            'body' => $kerusakan,
-            'click_action'=> "FLUTTER_NOTIFICATION_CLICK",
-            'screen'=> "memo",//or secondScreen or thirdScreen
+            'body' => $kerusakan
             );
+            
+            //field untuk menambahkan berbagai macam data
+            $data = array(
+                'click_action'=> "FLUTTER_NOTIFICATION_CLICK",
+                'screen'=> "memo",//or secondScreen or thirdScreen
+                'kyano'=> "000000000000000" //0652200513051296 000000000000000
+                );
+                
+            $dataKyano = array();
 
         $fields = array
         (
             'to' => '/topics/memo',
-            'notification' => $msg
+            'notification' => $msg,
+            'data' => $data
         );
 
         $headers = array
