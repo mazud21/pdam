@@ -43,8 +43,8 @@ class Masalah extends CI_Controller
             $this->load->view('templates/footer_masalah');
         } else {
             $this->Masalah_model->tambahDataMasalah();
+            //->sendNotifMasalah();
             $this->sendNotifMemo();
-            $this->sendNotifMasalah();
             $this->session->set_flashdata('flash', 'Ditambahkan');
             redirect('masalah');
         }
@@ -87,35 +87,82 @@ class Masalah extends CI_Controller
             $this->load->view('masalah/ubah', $data);
             $this->load->view('templates/footer_masalah');
         } else {
-            $this->sendNotifMemo();
-            $this->Masalah_model->ubahDataMasalah();
-            $this->session->set_flashdata('flash', 'Diubah');
-            redirect('masalah');
+            //$this->sendNotifMasalah();
+            
+            $data = $this->Masalah_model->ubahDataMasalah();
+            if ($data > 0){
+                $this->sendNotifMemo();
+                $this->session->set_flashdata('flash', 'Yeay! data berhasil diubah');
+                redirect('masalah');
+            } else {
+                $this->session->set_flashdata('flash', 'Ups! data gagal diubah');
+                redirect('masalah');
+
+            }
+            
         }
     }
 
     public function sendNotifMasalah()
     {
         $wilayah = $this->input->post('wilayah');
+        $kerusakan = $this->input->post('kerusakan');
 
         // API access key from Google API's Console
-        define('API_ACCESS_KEY', 'AIzaSyAuS070ZBgLi6hEOs6v7vFmzMAh7csl-nQ');
+        define('API_ACCESS_KEY', 'AAAACyyRMqo:APA91bE5USwfRnJijasIj_mgrDZxa5AAlEkHY7HeBJ0nokFgk9FN-6wZMybY0X2INqpQboEafAKkt4YY2sYgDoVgZG9EUlCkteS4w_XfaBzzR4oXa8IBoqEOLaqCTRnIMrrFsituLLcX');
         // prep the bundle
 
             $msg = array(
-            'title' => 'Info Masalah Air',
-            'body' => $wilayah,
-            'clickAction' => 'android.intent.action.TARGET_NOTIFICATION',
-            'priority' => 'high',
-            'sound' => 'default',
-            'time_to_live' => 3600
+            'title' => $wilayah,
+            'body' => $kerusakan
             );
-
-        $fields = array
+            
+            //field untuk menambahkan berbagai macam data
+            $data = array(
+                'click_action'=> "android.intent.action.TARGET_NOTIFICATION",
+                'screen'=> "infomasalah",//or secondScreen or thirdScreen
+                'kyano'=> "0652200513051296" //0652200513051296 000000000000000
+                );
+                
+            $dataKyano = array();
+            
+            $mimasud = 'dKHG2nXemGM:APA91bG_c2YIaIBCQ1urLeCIfJ_osw79JI7NvbLY7GXrO8xzplB2h2k6HGwCmnj09ExgKlx6bfufrdrabqEhB6LvWmwjsLitrwmazj15C5qqqsMMqjOUdK4cXDDMx7JxUmzDOd0GxC5M';
+            
+            $iphone6p = 'cs1cwtAjWkwUsPjZoKa29m:APA91bHMX-_wEWKMLwq4wBS7mMm2gBd8ppArKt5ggqrqNGGydp-cOqQbI0QffMXQZvXEgmOThaznf9HXWidlKk-vUUKyXgQQNCfwS4QKdprFGEPM0zKz_fCpCoQFxLdKIopB990uYrLL';
+            
+            $devices = array($iphone6s, $iphone6p);
+            
+            $jenis = '';
+            
+            if($jenis == 'single'){
+                
+                $fields = array
         (
-            'to' => '/topics/infomasalah', 
-            'data' => $msg
+            'to' => $iphone6s,
+            'notification' => $msg,
+            'data' => $data
         );
+
+            } else if($jenis == 'multiple') {
+                
+                $fields = array
+        (
+            //'to' => '/topics/memo',
+            'registration_ids' => $devices,
+            'notification' => $msg,
+            'data' => $data
+        );
+                
+            } else {
+                
+                $fields = array
+        (
+            'to' => '/topics/infomasalah',
+            'notification' => $msg,
+            'data' => $data
+        );
+                
+            }
 
         $headers = array
         (
@@ -146,7 +193,7 @@ class Masalah extends CI_Controller
         $kerusakan = $this->input->post('kerusakan');
         
         // API access key from Google API's Console => Cloud Messaging
-        define('API_ACCESS_KEY', 'AAAACyyRMqo:APA91bH-R5RUiRDwlYKDfEjszNLmJwaq0l67CO_aQoOAZQv3i-VBfuYl8YgpFCvsDYJPj5k7lhVe4XvxHv2aHCAbSLywSybhV0KPZrj0obO_nBkHq4CQTFfjmF0e9KVqh4nYH_gCPwzv');
+        define('API_ACCESS_KEY', 'AAAACyyRMqo:APA91bE5USwfRnJijasIj_mgrDZxa5AAlEkHY7HeBJ0nokFgk9FN-6wZMybY0X2INqpQboEafAKkt4YY2sYgDoVgZG9EUlCkteS4w_XfaBzzR4oXa8IBoqEOLaqCTRnIMrrFsituLLcX');
         
         // prep the bundle
 
@@ -157,19 +204,56 @@ class Masalah extends CI_Controller
             
             //field untuk menambahkan berbagai macam data
             $data = array(
-                'click_action'=> "FLUTTER_NOTIFICATION_CLICK",
+                'click_action'=> "android.intent.action.TARGET_NOTIFICATION", //android.intent.action.TARGET_NOTIFICATION || FLUTTER_NOTIFICATION_CLICK
                 'screen'=> "memo",//or secondScreen or thirdScreen
-                'kyano'=> "000000000000000" //0652200513051296 000000000000000
+                'kyano'=> "0652200513051296" //0652200513051296 000000000000000
                 );
                 
             $dataKyano = array();
-
-        $fields = array
+            
+            $iphone6s = 'eYcGJ-SCUkKTngL-V03f_B:APA91bFOYU2cRHf_10Z9CRnO7IERpCtkieU0WStSTjzx5i0G2W2Ob7Yggqgfkm5_-X8Vc_hcbZVu5KPgBIlkys8WWVkppWGddcmNvhaKepcHbm5Rro5j37ufZEdjOCmGNmzwMYEamnXe';
+            
+            $iphone6p = 'cs1cwtAjWkwUsPjZoKa29m:APA91bHMX-_wEWKMLwq4wBS7mMm2gBd8ppArKt5ggqrqNGGydp-cOqQbI0QffMXQZvXEgmOThaznf9HXWidlKk-vUUKyXgQQNCfwS4QKdprFGEPM0zKz_fCpCoQFxLdKIopB990uYrLL';
+            
+            $mimasud ='e9r1l_kj63A:APA91bEmaOWOmIrfTijBhdCGT0_9m_M4MO5PGLh7PKGeg-46IZXAnvGtwsC2RU3sJ1errOp3Fpm9LBNi3lqgZqoP-2PjNbhfLnzWCCiWNOVTYtzwvxhs0HqnMVkeHdBxFYXNoT09nLad';
+            
+            $lolipoop = 'f5l1vra5VzM:APA91bGarQVLPvCjrvNvFaRrypRjVFnwQTtvOR03KvaJkuu4sJpYqe5RufWalNbMJwAvtlGnE5-bjppv5XUA8cqX5WTuq6Nsd5edOYa79TizCYz1-OZXs8QQe7qLntwMFvIUQ09ojUYg';
+            
+            $sunmi = 'eTJwOvJYLfk:APA91bFzaWgHHExC2rPCfplXtD86j_2tAg0LHQhC2z2DRduw3ciiebuBbSjzmbMfw1UQotXRrbUlxhOgXi0T2OnSw6KzsS9ezzLalGNoFDZglhGZxpofrB-slpONEiN0-tSFddau4bIB';
+            
+            $devices = array($lolipoop, $sunmi, $iphone6p); //$iphone6s, 
+            
+            $jenis = 'single'; //multiple, single, ''
+            
+            if($jenis == 'single'){
+                
+                $fields = array
         (
-            'to' => '/topics/memo',
+            'to' => $mimasud,
             'notification' => $msg,
             'data' => $data
         );
+
+            } else if($jenis == 'multiple') {
+                
+                $fields = array
+        (
+            //'to' => '/topics/memo',
+            'registration_ids' => $devices,
+            'notification' => $msg,
+            'data' => $data
+        );
+                
+            } else {
+                
+                $fields = array
+        (
+            'to' => '/topics/test_notif',
+            'notification' => $msg,
+            'data' => $data
+        );
+                
+            }
 
         $headers = array
         (
